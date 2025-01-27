@@ -24,17 +24,18 @@ const Projects = () => {
     setIsModalOpen(false);
     setSelectedImages([]);
   };
+  const fetchProjects = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/projets/`);
+      setProjects(response.data);
+    } catch (error) {
+      console.error("Erreur lors du chargement des projets :", error);
+      toast.error("Erreur lors du chargement des projets.");
+    }
+  };
   useEffect(() => {
     // Récupérer les données de l'API
-    const fetchProjects = async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/projets/`);
-        setProjects(response.data);
-      } catch (error) {
-        console.error("Erreur lors du chargement des projets :", error);
-        toast.error("Erreur lors du chargement des projets.");
-      }
-    };
+
 
     fetchProjects();
   }, []);
@@ -139,7 +140,7 @@ const Projects = () => {
         </div>
         <div className="desc">
           <p>
-            {project.description}
+          
             {project.average_score ? (
               <>
                 {renderStars(project.average_score, false, project.id)} (
