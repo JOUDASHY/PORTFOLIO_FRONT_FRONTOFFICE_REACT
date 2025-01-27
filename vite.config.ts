@@ -9,4 +9,7 @@ export default defineConfig({
     port: 5173,        // Ou un autre port de votre choix
     open: true,        // Ouvre automatiquement le navigateur (optionnel)
   },
+  build: {
+    outDir: 'build', // Le répertoire de sortie pour le build
+  }
 })
