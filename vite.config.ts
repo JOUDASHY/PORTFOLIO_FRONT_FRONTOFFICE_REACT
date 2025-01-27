@@ -10,6 +10,6 @@ export default defineConfig({
     open: true,        // Ouvre automatiquement le navigateur (optionnel)
   },
   build: {
-    outDir: 'build', // Le répertoire de sortie pour le build
+    outDir: 'dist', // Le répertoire de sortie pour le build
   }
 })
