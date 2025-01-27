@@ -21,61 +21,61 @@ import VanillaTilt from 'vanilla-tilt';
 function App() {
   useEffect(() => {
     // ScrollReveal configuration
-    const srtop = ScrollReveal({
-      origin: 'top',
-      distance: '80px',
-      duration: 1000,
-      reset: true,
-    });
+    // const srtop = ScrollReveal({
+    //   origin: 'top',
+    //   distance: '80px',
+    //   duration: 1000,
+    //   reset: true,
+    // });
 
-    srtop.reveal('.about .content h3', { delay: 200 });
-    srtop.reveal('.about .content .tag', { delay: 200 });
-    srtop.reveal('.about .content p', { delay: 200 });
-    srtop.reveal('.about .content .box-container', { delay: 200 });
-    srtop.reveal('.about .content .resumebtn', { delay: 200 });
-    srtop.reveal('.skills .container', { interval: 200 });
-    srtop.reveal('.skills .container .bar', { delay: 400 });
-    srtop.reveal('.education .box', { interval: 200 });
-    srtop.reveal('.work .box', { interval: 200 });
-    srtop.reveal('.experience .timeline', { delay: 400 });
-    srtop.reveal('.experience .timeline .container', { interval: 400 });
-    srtop.reveal('.contact .container', { delay: 400 });
-    srtop.reveal('.contact .container .form-group', { delay: 400 });
+    // srtop.reveal('.about .content h3', { delay: 200 });
+    // srtop.reveal('.about .content .tag', { delay: 200 });
+    // srtop.reveal('.about .content p', { delay: 200 });
+    // srtop.reveal('.about .content .box-container', { delay: 200 });
+    // srtop.reveal('.about .content .resumebtn', { delay: 200 });
+    // srtop.reveal('.skills .container', { interval: 200 });
+    // srtop.reveal('.skills .container .bar', { delay: 400 });
+    // srtop.reveal('.education .box', { interval: 200 });
+    // srtop.reveal('.work .box', { interval: 200 });
+    // srtop.reveal('.experience .timeline', { delay: 400 });
+    // srtop.reveal('.experience .timeline .container', { interval: 400 });
+    // srtop.reveal('.contact .container', { delay: 400 });
+    // srtop.reveal('.contact .container .form-group', { delay: 400 });
 
-    // Menu Toggle
-    const menu = document.getElementById('menu');
-    const navbar = document.querySelector('.navbar');
-    const toggleMenu = () => {
-      menu.classList.toggle('fa-times');
-      navbar.classList.toggle('nav-toggle');
-    };
-    menu.addEventListener('click', toggleMenu);
+    // // Menu Toggle
+    // const menu = document.getElementById('menu');
+    // const navbar = document.querySelector('.navbar');
+    // const toggleMenu = () => {
+    //   menu.classList.toggle('fa-times');
+    //   navbar.classList.toggle('nav-toggle');
+    // };
+    // menu.addEventListener('click', toggleMenu);
 
-    // Scroll Event
-    const scrollTop = document.getElementById('scroll-top');
-    const handleScroll = () => {
-      if (window.scrollY > 60) {
-        scrollTop.classList.add('active');
-      } else {
-        scrollTop.classList.remove('active');
-      }
+    // // Scroll Event
+    // const scrollTop = document.getElementById('scroll-top');
+    // const handleScroll = () => {
+    //   if (window.scrollY > 60) {
+    //     scrollTop.classList.add('active');
+    //   } else {
+    //     scrollTop.classList.remove('active');
+    //   }
 
-      document.querySelectorAll('section').forEach((section) => {
-        const height = section.offsetHeight;
-        const offset = section.offsetTop - 200;
-        const top = window.scrollY;
-        const id = section.id;
+    //   document.querySelectorAll('section').forEach((section) => {
+    //     const height = section.offsetHeight;
+    //     const offset = section.offsetTop - 200;
+    //     const top = window.scrollY;
+    //     const id = section.id;
 
-        if (top > offset && top < offset + height) {
-          document.querySelectorAll('.navbar ul li a').forEach((link) =>
-            link.classList.remove('active')
-          );
-          const activeLink = document.querySelector(`.navbar a[href="#${id}"]`);
-          if (activeLink) activeLink.classList.add('active');
-        }
-      });
-    };
-    window.addEventListener('scroll', handleScroll);
+    //     if (top > offset && top < offset + height) {
+    //       document.querySelectorAll('.navbar ul li a').forEach((link) =>
+    //         link.classList.remove('active')
+    //       );
+    //       const activeLink = document.querySelector(`.navbar a[href="#${id}"]`);
+    //       if (activeLink) activeLink.classList.add('active');
+    //     }
+    //   });
+    // };
+    // window.addEventListener('scroll', handleScroll);
 
     // Smooth Scrolling
     const links = document.querySelectorAll('a[href*="#"]');
@@ -119,8 +119,8 @@ function App() {
 
     // Clean-up effect
     return () => {
-      menu.removeEventListener('click', toggleMenu);
-      window.removeEventListener('scroll', handleScroll);
+      // menu.removeEventListener('click', toggleMenu);
+      // window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       typed.destroy(); // Clean-up Typed.js instance
     };
