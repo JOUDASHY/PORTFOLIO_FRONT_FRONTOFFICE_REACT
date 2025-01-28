@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Modal from "react-modal";
 import { toast } from 'react-toastify'; // Importation de Toastify
 import Swal from 'sweetalert2'; // Importation de SweetAlert2
-
+import projet from '../assets/images/projet.png'; 
 
 
 const Projects = () => {
@@ -120,14 +120,21 @@ const Projects = () => {
   {projects.map((project) => (
     <div className="box tilt" key={project.id}>
       <div className="image-container">
-        <img
-          src={
-            project.related_images.length > 0
-              ? project.related_images[0].image
-              : "/assets/images/projects/default.png"
-          }
-          alt={project.nom}
-        />
+      <img
+  src={
+    project.related_images.length > 0
+      ? project.related_images[0].image
+      : projet
+  }
+  alt={project.nom}
+  style={{
+    width: "100%", // Largeur fixe
+    height: "300px", // Hauteur fixe
+    objectFit: "cover", // Pour adapter l'image sans déformation
+    borderRadius: "8px", // Facultatif, pour des coins arrondis
+  }}
+/>
+
         {project.related_images.length > 1 && (
           <span className="image-indicator">
             +{project.related_images.length - 1} images
@@ -135,7 +142,7 @@ const Projects = () => {
         )}
       </div>
       <div className="content">
-        <div className="tag">
+        <div className="tag ">
           <h3>{project.nom}</h3>
         </div>
         <div className="desc">

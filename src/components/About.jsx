@@ -92,10 +92,12 @@ const About = () => {
     rel="noopener noreferrer" 
     className="btn"
   >
+    <i className="fas fa-file-pdf" style={{ marginRight: "8px" }}></i> {/* Icone du CV */}
     <span>Resume (CV)</span>
-    <i className="fas fa-chevron-right"></i>
+    <i className="fas fa-chevron-right" style={{ marginLeft: "8px" }}></i>
   </a>
 </div>
+
 
 
 

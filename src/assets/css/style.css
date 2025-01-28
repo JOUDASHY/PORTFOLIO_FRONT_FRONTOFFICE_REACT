@@ -297,6 +297,9 @@ header .navbar ul li a:hover {
   display: inline-block;
   margin-bottom: 14px;
 }
+.name{
+  color: #00d9ff!important;
+}
 .social-icons a {
   font-size: 2rem;
   display: inline-block;
@@ -713,7 +716,7 @@ header .navbar ul li a:hover {
   background: var(--jaune);
 }
 .work .box-container .box .content .tag h3 {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .work .box-container .box:hover .content {
   top: 25%;

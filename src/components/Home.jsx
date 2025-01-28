@@ -135,7 +135,7 @@ const Home = () => {
       <div id="particles-js"></div>
       <div className="content">
         <h2>
-          Hi There,<br /> I'm {profile ? profile.username : 'Loading...'}
+          Hi There,<br /> I'm <span className='name'> {profile ? profile.username : 'Loading...'}</span>
         </h2>
         <p>
           I am into <span className="typing-text"></span>
