@@ -27,7 +27,7 @@ const Footer = () => {
           <h3>{profile.username}'s Portfolio</h3>
           <p>
             {profile.about} <br /> <br />
-            Keep Rising 🚀. Connect with me over live chat!
+          
           </p>
         </div>
 

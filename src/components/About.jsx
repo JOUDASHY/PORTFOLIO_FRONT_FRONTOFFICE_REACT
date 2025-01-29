@@ -44,7 +44,7 @@ const About = () => {
             I am a software developer based in {profile.address}. I am very
             passionate about improving my coding skills & developing
             applications & websites. I love working with modern technologies and
-            frameworks. I build WebApps and Websites using Django and other
+            frameworks. I build WebApps and Websites using Django, Laravel, react and other
             technologies. I strive to work on personal projects to further my
             skills.
           </p>
@@ -93,15 +93,10 @@ const About = () => {
     className="btn"
   >
     <i className="fas fa-file-pdf" style={{ marginRight: "8px" }}></i> {/* Icone du CV */}
-    <span>Resume (CV)</span>
+    <span>Resume ( CV )</span>
     <i className="fas fa-chevron-right" style={{ marginLeft: "8px" }}></i>
   </a>
 </div>
-
-
-
-
-
         </div>
       </div>
     </section>
