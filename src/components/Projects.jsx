@@ -174,7 +174,7 @@ const Projects = () => {
           </div>
 
           <div className="btns">
-            <a href="#" className="btn" target="_blank" rel="noopener noreferrer">
+            <a href={project.projetlink} className="btn" target="_blank" rel="noopener noreferrer">
               <i className="fas fa-eye"></i> View
             </a>
           

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import user_pr from "../assets/images/user.png";
 
 const About = () => {
   const [profile, setProfile] = useState(null);
@@ -32,7 +33,11 @@ const About = () => {
           <img
             draggable="false"
             className="tilt"
-            src={`${import.meta.env.VITE_API_BASE_URL}${profile.image}`}
+            src={
+              profile?.image
+                ? `${import.meta.env.VITE_API_BASE_URL}${profile.image}`
+                : user_pr
+            }
             alt="Profile"
           />
         </div>
