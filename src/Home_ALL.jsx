@@ -108,7 +108,7 @@ function App() {
     const handleVisibilityChange = () => {
       const favicon = document.getElementById('favicon');
       if (document.visibilityState === 'visible') {
-        document.title = 'Portfolio | Jigar Sable';
+        document.title = 'Portfolio | Nilsen Tovohery';
         favicon.setAttribute('href', 'assets/images/favicon.png');
       } else {
         document.title = 'Come Back To Portfolio';
