@@ -14,8 +14,11 @@ const Experience = () => {
           company: exp.entreprise,
           role: exp.role,
           duration: `${new Date(exp.date_debut).toLocaleDateString()} - ${
-            exp.date_fin ? new Date(exp.date_fin).toLocaleDateString() : "Present"
+            exp.date_fin && new Date(exp.date_fin) <= new Date()
+              ? new Date(exp.date_fin).toLocaleDateString()
+              : "Present"
           }`,
+          
           alignment: index % 2 === 0 ? "right" : "left", // Alternance des alignements
         }));
         setExperiences(formattedData);

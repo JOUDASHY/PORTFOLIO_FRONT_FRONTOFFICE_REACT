@@ -47,9 +47,10 @@ const Education = () => {
 </p>
 
 
-              <h4>
-                {education.annee_debut} - {education.annee_fin} {/* Années */}
-              </h4>
+<h4>
+  {education.annee_debut} - {education.annee_fin && parseInt(education.annee_fin) > new Date().getFullYear() ? 'present' : education.annee_fin}
+</h4>
+
             </div>
           </div>
         ))}
