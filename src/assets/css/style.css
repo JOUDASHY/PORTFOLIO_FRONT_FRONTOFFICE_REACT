@@ -82,11 +82,7 @@ header {
   background-color: #fff;
   box-shadow: 0 1px 4px rgba(146, 161, 176, 0.3);
 }
-section {
-  min-height: 100vh;
-  padding: 2rem 9%;
-  margin-top: 55px;
-}
+
 .heading {
   font-size: 3.5rem;
   color: rgb(32, 32, 32);
@@ -913,6 +909,49 @@ header .navbar ul li a:hover {
 .morebtn .btn:hover i {
   transform: translateX(5px);
 }
+
+/* assets/css/loading.css */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.dot {
+  width: 50px; /* Very large size */
+  height: 50px; /* Very large size */
+  margin: 0 20px; /* Increased margin for better spacing */
+  border-radius: 50%;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+.blue {
+  background-color: blue;
+  animation-delay: 0s;
+}
+
+.yellow {
+  background-color: yellow;
+  animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px); /* Increased bounce height */
+  }
+  60% {
+    transform: translateY(-15px); /* Increased bounce height */
+  }
+}
+
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
 @media screen and (max-width: 600px) {
