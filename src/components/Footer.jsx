@@ -95,7 +95,7 @@ const Footer = () => {
       </div>
 
       <h1 className="credit">
-        Designed with <i className="fa fa-heart pulse"></i> by{" "}
+        Designed by{" "}
         <a href={profile.link_linkedin}>{profile.username}</a>
       </h1>
     </section>
