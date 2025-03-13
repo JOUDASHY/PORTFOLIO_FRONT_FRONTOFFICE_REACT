@@ -9,6 +9,7 @@ import Home from './components/Home.jsx';
 import Education from './components/Education.jsx';
 import Footer from './components/Footer.jsx';
 import Projects from './components/Projects.jsx';
+import Appointment from './Appointment.jsx';
 
 import './assets/css/style.css';
 import './assets/css/404.css';
@@ -133,7 +134,9 @@ function App() {
       <About />
       <Skills />
       <Education />
+      <Appointment />
       <Experience />
+      
       <Projects />
       <Contact />
    

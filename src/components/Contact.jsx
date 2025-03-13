@@ -103,8 +103,7 @@ const Contact = () => {
   style={{ width: '1.5em', height: '1.5em', objectFit: 'contain' ,marginRight: '0.5em' }} 
 /> Contact <span>me</span>
       </h2>
-
-      <div className="container">
+<center>      <div className="container">
         <div className="content">
           <div className="image-box">
             <img draggable="false" src={Image} alt="Contact" />
@@ -149,6 +148,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
+      </center>
     </section>
   );
 };

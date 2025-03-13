@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import user_pr from "../assets/images/user.png";
+import Loading from "../Loading.jsx"; // Ajustez le chemin d'importation selon votre structure
 
 const About = () => {
   const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -12,14 +14,20 @@ const About = () => {
         setProfile(response.data);
       } catch (error) {
         console.error('Error fetching profile data:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProfile();
   }, []);
 
-  if (!profile) {
-    return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div className="text-center">
+        <Loading />
+      </div>
+    );
   }
 
   return (
@@ -46,12 +54,7 @@ const About = () => {
           <span className="tag">Full Stack Developer</span>
 
           <p>
-            I am a software developer based in {profile.address}. I am very
-            passionate about improving my coding skills & developing
-            applications & websites. I love working with modern technologies and
-            frameworks. I build WebApps and Websites using Django, Laravel, react and other
-            technologies. I strive to work on personal projects to further my
-            skills.
+            I am a software developer based in {profile.address}. I am very passionate about improving my coding skills & developing applications & websites. I love working with modern technologies and frameworks. I build WebApps and Websites using Django, Laravel, React and other technologies. I strive to work on personal projects to further my skills.
           </p>
 
           <div className="box-container">
@@ -64,44 +67,40 @@ const About = () => {
               </p>
             </div>
           </div>
-<br />
+          <br />
           <div className="d-flex gap-4 mt-5">
-  <a
-    href={profile.link_linkedin}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="btn btn-primary btn-lg d-flex align-items-center"
-    style={{ padding: '10px 0px', fontSize: '18px' }}
-  >
-    <i className="fab fa-linkedin me-3" style={{ fontSize: '24px' }}></i> LinkedIn
-  </a>
-  <a
-    href={profile.link_facebook}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="btn btn-secondary btn-lg d-flex align-items-center"
-    style={{ padding: '10px 20px', fontSize: '18px' }}
-  >
-    <i className="fab fa-facebook me-3" style={{ fontSize: '24px' }}></i> Facebook
-  </a>
-</div>
+            <a
+              href={profile.link_linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary btn-lg d-flex align-items-center"
+              style={{ padding: '10px 0px', fontSize: '18px' }}
+            >
+              <i className="fab fa-linkedin me-3" style={{ fontSize: '24px' }}></i> LinkedIn
+            </a>
+            <a
+              href={profile.link_facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary btn-lg d-flex align-items-center"
+              style={{ padding: '10px 20px', fontSize: '18px' }}
+            >
+              <i className="fab fa-facebook me-3" style={{ fontSize: '24px' }}></i> Facebook
+            </a>
+          </div>
 
-
-
-
-
-<div className="resumebtn">
-  <a 
-    href="/CV_Eddy_Nilsen.pdf" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    className="btn"
-  >
-    <i className="fas fa-file-pdf" style={{ marginRight: "8px" }}></i> {/* Icone du CV */}
-    <span>Resume ( CV )</span>
-    <i className="fas fa-chevron-right" style={{ marginLeft: "8px" }}></i>
-  </a>
-</div>
+          <div className="resumebtn">
+            <a 
+              href="/CV_Eddy_Nilsen.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn"
+            >
+              <i className="fas fa-file-pdf" style={{ marginRight: "8px" }}></i>
+              <span>Resume ( CV )</span>
+              <i className="fas fa-chevron-right" style={{ marginLeft: "8px" }}></i>
+            </a>
+          </div>
         </div>
       </div>
     </section>

@@ -373,11 +373,11 @@ header .navbar ul li a:hover {
 }
 .about .row .image img {
   margin: 4rem;
-  width: 30rem;
+  width: 40rem;
   height: auto;
   border-radius: 5%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
-  mix-blend-mode: luminosity;
+  /* mix-blend-mode: luminosity; */
   transition: 0.3s;
   cursor: pointer;
 }
@@ -909,8 +909,6 @@ header .navbar ul li a:hover {
 .morebtn .btn:hover i {
   transform: translateX(5px);
 }
-
-/* assets/css/loading.css */
 .loading-container {
   display: flex;
   justify-content: center;
@@ -923,11 +921,11 @@ header .navbar ul li a:hover {
 }
 
 .dot {
-  width: 50px; /* Very large size */
-  height: 50px; /* Very large size */
-  margin: 0 20px; /* Increased margin for better spacing */
+  width: 50px;
+  height: 50px;
+  margin: 0 20px;
   border-radius: 50%;
-  animation: bounce 1.5s infinite ease-in-out;
+  animation: fluidBounce 1.5s infinite ease-in-out;
 }
 
 .blue {
@@ -940,17 +938,24 @@ header .navbar ul li a:hover {
   animation-delay: 0.3s;
 }
 
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
+@keyframes fluidBounce {
+  0% {
+    transform: translateY(0) scale(1);
   }
-  40% {
-    transform: translateY(-30px); /* Increased bounce height */
+  25% {
+    transform: translateY(-10px) scale(1.1);
   }
-  60% {
-    transform: translateY(-15px); /* Increased bounce height */
+  50% {
+    transform: translateY(0) scale(1);
+  }
+  75% {
+    transform: translateY(-5px) scale(1.05);
+  }
+  100% {
+    transform: translateY(0) scale(1);
   }
 }
+
 
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
@@ -1364,6 +1369,87 @@ form .button-area {
   top: 10px;
   right: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Section principale */
+.appointment-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* background-color: #007bff; Couleur primaire */
+  height: 35vh;
+  padding: 2rem;
+}
+.bg-appointment {
+  background: linear-gradient(rgba(9, 30, 62, .85), rgba(9, 30, 62, .85)), url('https://media.istockphoto.com/id/1507501086/photo/american-wave-flag-background-usa.webp?s=2048x2048&w=is&k=20&c=DPnCSmojHejIirMVfO0h401lAb3c5TmZJ4f_MZRyCIQ=') center center no-repeat;
+  background-size: cover;
+}
+/* Conteneur du contenu */
+.appointment-content {
+  max-width: 800px;
+  width: 100%;
+}
+
+/* Titre */
+.appointment-title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+/* Texte */
+.appointment-text {
+  font-size: 1.2rem;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .appointment-section {
+    height: 40vh; /* Un peu plus haut sur tablette */
+  }
+
+  .appointment-title {
+    font-size: 2rem;
+  }
+
+  .appointment-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .appointment-section {
+    height: 45vh; /* Ajustement sur mobile */
+    padding: 1.5rem;
+  }
+
+  .appointment-title {
+    font-size: 1.8rem;
+  }
+
+  .appointment-text {
+    font-size: 1rem;
+  }
+}
+
 
 
 

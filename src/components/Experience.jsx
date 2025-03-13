@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from "../Loading.jsx"; // Ajustez le chemin si nécessaire
 
 const Experience = () => {
   const [experiences, setExperiences] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Récupération des données depuis l'API
@@ -13,22 +15,34 @@ const Experience = () => {
           id: exp.id,
           company: exp.entreprise,
           role: exp.role,
+          type: exp.type,
           duration: `${new Date(exp.date_debut).toLocaleDateString()} - ${
             exp.date_fin && new Date(exp.date_fin) <= new Date()
               ? new Date(exp.date_fin).toLocaleDateString()
               : "Present"
           }`,
-          
           alignment: index % 2 === 0 ? "right" : "left", // Alternance des alignements
         }));
         setExperiences(formattedData);
       } catch (error) {
         console.error("Erreur lors du chargement des expériences :", error);
+      } finally {
+        setLoading(false);
       }
     };
-    
+
     fetchExperiences();
-  }, []); // Ajout du tableau vide pour exécuter l'effet une seule fois
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="experience" id="experience">
+        <div className="text-center">
+          <Loading />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="experience" id="experience">
@@ -38,16 +52,15 @@ const Experience = () => {
 
       <div className="timeline">
         {experiences.map((exp) => (
-          <div
-            className={`container ${exp.alignment}`}
-            key={exp.id}
-          >
+          <div className={`container ${exp.alignment}`} key={exp.id}>
             <div className="content">
               <div className="tag">
                 <h2>{exp.company}</h2>
               </div>
               <div className="desc">
-                <h3>{exp.role}</h3>
+                <h3>
+                  {exp.role} ({exp.type})
+                </h3>
                 <p>{exp.duration}</p>
               </div>
             </div>
