@@ -31,9 +31,22 @@ const About = () => {
   }
 
   return (
+
+<>
+
+    <div className="appointment-section">
+    {/* Conteneur flex pour centrer parfaitement */}
+    <div className="appointment-content">
+      <h1 style={{ fontSize: '50px' }}>
+      <i className="fas fa-user-alt"></i> About <span>Me</span>
+
+  
+      </h1>
+      
+    </div>
+  </div>
     <section className="about" id="about">
       <h2 className="heading">
-        <i className="fas fa-user-alt"></i> About <span>Me</span>
       </h2>
 
       <div className="row">
@@ -53,9 +66,12 @@ const About = () => {
           <h3>I'm {profile.username}</h3>
           <span className="tag">Full Stack Developer</span>
 
-          <p>
-            I am a software developer based in {profile.address}. I am very passionate about improving my coding skills & developing applications & websites. I love working with modern technologies and frameworks. I build WebApps and Websites using Django, Laravel, React and other technologies. I strive to work on personal projects to further my skills.
-          </p>
+          <p style={{ textAlign: 'justify' }}>
+  I am a passionate full-stack developer and system administrator based in {profile.address}. With a solid foundation in both software development and IT management, I design and build dynamic web applications and responsive websites using modern technologies like Django, Laravel, and React. In my role as a system administrator, I manage robust server infrastructures by implementing top-tier security measures, optimizing performance, and ensuring high availability. This dual expertise allows me to seamlessly integrate development with IT operations, providing comprehensive solutions that are both innovative and reliable. Whether I’m working on personal projects or tackling complex professional challenges, I continuously strive to refine my skills and apply best practices that bridge the gap between cutting-edge development and efficient system management.
+</p>
+
+
+
 
           <div className="box-container">
             <div className="box">
@@ -104,6 +120,7 @@ const About = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

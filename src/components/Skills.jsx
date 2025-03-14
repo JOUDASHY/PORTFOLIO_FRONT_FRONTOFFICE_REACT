@@ -4,6 +4,7 @@ import Loading from "../Loading.jsx"; // Assurez-vous que le chemin d'importatio
 const Skills = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedSkill, setSelectedSkill] = useState(null); // Pour stocker la compétence sélectionnée
 
   useEffect(() => {
     // Appel de l'API pour récupérer les compétences
@@ -19,66 +20,148 @@ const Skills = () => {
       });
   }, []);
 
+  const handleInfoClick = (skill) => {
+    setSelectedSkill(skill);
+  };
+
+  const closeModal = () => {
+    setSelectedSkill(null);
+  };
+
   return (
-    <section className="skills py-5" id="skills">
-      <div className="container">
-        <h2 className="heading text-center mb-4">
-          <i className="fas fa-laptop-code"></i> Skills & <span>Abilities</span>
-        </h2>
-        {loading ? (
-          <div className="text-center">
-            <Loading />
-          </div>
-        ) : (
-          <div className="row row-cols-1 row-cols-md-2 g-4">
-            {skills.map((skill) => (
-              <div className="col" key={skill.id}>
-                <div
-                  className="card shadow-sm border-0"
-                  style={{ padding: "20px", borderRadius: "8px" }}
-                >
-                  <div className="card-body text-center">
-                    <img
-                      src={skill.image}
-                      alt={skill.name}
-                      className="img-fluid mb-3"
-                      style={{
-                        width: "100%",
-                        aspectRatio: "1",
-                        objectFit: "cover",
-                        borderRadius: "8px",
-                      }}
-                    />
-                    <h5 className="card-title text-dark">{skill.name}</h5>
-                    {/* Barre de progression */}
-                    <div
-                      style={{
-                        width: "90%",
-                        backgroundColor: "#e0e0df",
-                        borderRadius: "10px",
-                        margin: "10px 0",
-                        height: "10px",
-                      }}
-                    >
+    <>
+      <div className="appointment-section bg-appointment">
+        {/* Conteneur flex pour centrer le contenu */}
+        <div className="appointment-content">
+          <h1 className="appointment-title">
+            <i className="fas fa-laptop-code"></i> Skills & <span>Abilities</span>
+          </h1>
+          <p className="appointment-text">
+            Explore my technical skills and abilities honed over the years. From innovative problem-solving to coding mastery, my expertise reflects a commitment to continuous learning and excellence.
+          </p>
+        </div>
+      </div>
+
+      <section className="skills py-5" id="skills">
+        <div className="container">
+          <h2 className="heading text-center mb-4"></h2>
+          {loading ? (
+            <div className="text-center">
+              <Loading />
+            </div>
+          ) : (
+            <div className="row row-cols-1 row-cols-md-2 g-4">
+              {skills.map((skill) => (
+                <div className="col" key={skill.id}>
+                  <div
+                    className="card shadow-sm border-0"
+                    style={{ padding: "20px", borderRadius: "8px" }}
+                  >
+                    <div className="card-body text-center">
+                      <img
+                        src={skill.image}
+                        alt={skill.name}
+                        className="img-fluid mb-3"
+                        style={{
+                          width: "100%",
+                          aspectRatio: "1",
+                          objectFit: "cover",
+                          borderRadius: "8px",
+                        }}
+                      />
+                      <h5 className="card-title text-dark">{skill.name}    <button
+                        onClick={() => handleInfoClick(skill)}
+                        style={{
+                          border: "none",
+                          background: "black",
+                          cursor: "pointer",
+                          marginLeft: "10px",
+                          borderRadius: "50%",
+                          color: "white",
+                        }}
+                      >
+                        <i className="fas fa-info-circle"></i>
+                      </button></h5>
+                      {/* Barre de progression */}
                       <div
                         style={{
-                          width: `${skill.niveau * 10}%`,
-                          backgroundColor: "#f68c09",
-                          height: "100%",
+                          width: "90%",
+                          backgroundColor: "#e0e0df",
                           borderRadius: "10px",
-                          transition: "width 0.5s ease-in-out",
+                          margin: "10px 0",
+                          height: "10px",
                         }}
-                      ></div>
+                      >
+                        <div
+                          style={{
+                            width: `${skill.niveau * 10}%`,
+                            backgroundColor: "#f68c09",
+                            height: "100%",
+                            borderRadius: "10px",
+                            transition: "width 0.5s ease-in-out",
+                          }}
+                        ></div>
+                      </div>
+                      <p className="text-muted">{skill.niveau * 10}%</p>
+                      {/* Icône d'info pour afficher la description dans une modale */}
+                   
                     </div>
-                    <p className="text-muted">{skill.niveau * 10}%</p>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Modale pour afficher la description de la compétence sélectionnée */}
+      {selectedSkill && (
+  <div
+    className="modal-overlay"
+    onClick={closeModal}
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 1000,
+    }}
+  >
+    <div
+      className="modal-content"
+      onClick={(e) => e.stopPropagation()}
+      style={{
+        position: "relative", // Makes the close button position relative to this container
+        background: "#fff",
+        padding: "20px",
+        borderRadius: "8px",
+        maxWidth: "500px",
+        width: "90%",
+      }}
+    >
+      <button
+        onClick={closeModal}
+        className="btn btn-danger"
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+        }}
+      >
+        X
+      </button>
+      <h2>{selectedSkill.name}</h2>
+      <p>{selectedSkill.description}</p>
+    </div>
+  </div>
+)}
+
+    </>
   );
 };
 

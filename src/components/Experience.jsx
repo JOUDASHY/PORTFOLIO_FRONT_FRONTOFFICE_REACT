@@ -45,9 +45,22 @@ const Experience = () => {
   }
 
   return (
-    <section className="experience" id="experience">
+    <>
+ <div className="appointment-section bg-appointment">
+  {/* Flex container to perfectly center the content */}
+  <div className="appointment-content">
+    <h1 className="appointment-title">
+      <i className="fas fa-briefcase"></i> Experience
+    </h1>
+    <p className="appointment-text">
+      Explore my diverse career where innovation and technical expertise come together to create effective digital solutions. My passion drives me to overcome today's tech challenges.
+    </p>
+  </div>
+</div>
+
+
+  <section className="experience" id="experience">
       <h2 className="heading">
-        <i className="fas fa-briefcase"></i> Experience
       </h2>
 
       <div className="timeline">
@@ -74,7 +87,8 @@ const Experience = () => {
           <i className="fas fa-arrow-right"></i>
         </a>
       </div>
-    </section>
+    </section></>
+ 
   );
 };
 

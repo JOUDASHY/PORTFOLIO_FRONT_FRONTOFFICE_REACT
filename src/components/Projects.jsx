@@ -106,11 +106,22 @@ const Projects = () => {
   return (
     <div>
       {/* Navbar */}
+      <div className="appointment-section bg-appointment">
+  {/* Flex container to center content perfectly */}
+  <div className="appointment-content">
+    <h1 className="appointment-title">
+      <i className="fas fa-laptop-code"></i> Projects <span>Made</span>
+    </h1>
+    <p className="appointment-text">
+      Discover a selection of projects that highlight my technical skills and creativity, transforming innovative ideas into effective digital solutions.
+    </p>
+  </div>
+</div>
 
       <section className="work" id="projects">
         <h2 className="heading">
-          <i className="fas fa-laptop-code"></i> Projects <span>Made</span>
         </h2>
+        
         {loadingProjects ? (
           <div className="text-center">
             <Loading />
@@ -162,7 +173,7 @@ const Projects = () => {
                       <p><strong>Donnez une note :</strong></p>
                       <div>{renderStars(selectedScore[project.id] || 0, true, project.id)}</div>
                       <button
-                        className="btn btn-primary mt-2"
+                        className="btn btn-primary mt-1"
                         onClick={() => handleRatingSubmit(project.id)}
                         disabled={loading}
                       >

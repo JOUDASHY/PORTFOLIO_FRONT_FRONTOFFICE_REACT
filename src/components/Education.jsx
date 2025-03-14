@@ -21,9 +21,21 @@ const Education = () => {
   }, []);
 
   return (
-    <section className="education" id="education">
+    <>  
+    <div className="appointment-section bg-appointment">
+  {/* Flex container to center content perfectly */}
+  <div className="appointment-content">
+    <h1 className="appointment-title">
+      <i className="fas fa-graduation-cap"></i> My <span>Education</span>
+    </h1>
+    <p className="appointment-text">
+      Explore the educational experiences that have laid the foundation for my professional journey. From rigorous academic studies to hands-on projects, discover how my education has fueled my passion for development and innovation.
+    </p>
+  </div>
+</div>
+
+  <section className="education" id="education">
       <h1 className="heading">
-        <i className="fas fa-graduation-cap"></i> My <span>Education</span>
       </h1>
       {loading ? (
         <div className="text-center">
@@ -59,7 +71,8 @@ const Education = () => {
           ))}
         </div>
       )}
-    </section>
+    </section></>
+   
   );
 };
 

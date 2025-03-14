@@ -93,15 +93,37 @@ const Contact = () => {
     setMessage('');
   };
   return (
-    <section className="contact" id="contact">
+    <>
+   <div className="appointment-section bg-appointment">
+  {/* Flex container to center content perfectly */}
+  <div className="appointment-content">
+    <h1 className="appointment-title">
+      <img 
+        src={logo} 
+        alt="Logo" 
+        style={{
+          borderRadius: '50%',
+          width: '1.5em',
+          height: '1.5em',
+          objectFit: 'contain',
+          marginRight: '0.5em',
+          padding: '5px',
+          backgroundColor: '#f68c09'
+        }} 
+      /> 
+      Contact <span>me</span>
+    </h1>
+    <p className="appointment-text">
+      Feel free to reach out for collaborations, inquiries, or just to say hello!
+    </p>
+  </div>
+</div>
+
+  <section className="contact" id="contact">
                  {/* <ToastContainer /> */}
 
       <h2 className="heading">
-      <img 
-  src={logo} 
-  alt="" 
-  style={{ width: '1.5em', height: '1.5em', objectFit: 'contain' ,marginRight: '0.5em' }} 
-/> Contact <span>me</span>
+    
       </h2>
 <center>      <div className="container">
         <div className="content">
@@ -150,6 +172,8 @@ const Contact = () => {
       </div>
       </center>
     </section>
+    </>
+ 
   );
 };
 

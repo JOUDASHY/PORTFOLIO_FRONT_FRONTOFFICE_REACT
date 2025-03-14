@@ -359,13 +359,15 @@ header .navbar ul li a:hover {
 .about {
   color: #000;
   background: rgb(255, 255, 255);
+  min-height: 70vh;
+
 }
 .about .row {
   display: flex;
   flex-direction: row;
   gap: 2rem;
   flex-wrap: wrap;
-  padding: 4rem;
+  padding: rem;
 }
 .about .row .image {
   text-align: center;
@@ -373,7 +375,7 @@ header .navbar ul li a:hover {
 }
 .about .row .image img {
   margin: 4rem;
-  width: 40rem;
+  width: 47rem;
   height: auto;
   border-radius: 5%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
@@ -471,11 +473,10 @@ header .navbar ul li a:hover {
 }
 /* about media queries ends*/
 /* about section ends */
-
 /* skills section starts */
 .skills {
-  min-height: 90vh;
-  background: linear-gradient(to bottom, var(--bleu), #4a00e0);
+  min-height: 70vh;
+  /* background: linear-gradient(to bottom, var(--bleu), #dad8c8); */
 }
 .skills h2 {
   color: #fff;
@@ -484,7 +485,7 @@ header .navbar ul li a:hover {
   color: var(--jaune);
 }
 .skills .container {
-  background: rgba(0, 0, 22, 0.4);
+  background: var(--bleu);
   color: #fff;
   border-radius: 1rem;
   padding: 2rem;
@@ -495,7 +496,6 @@ header .navbar ul li a:hover {
 .skills .container .row {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  flex-wrap: wrap;
   gap: 1.8rem;
 }
 .skills .container .bar {
@@ -504,11 +504,13 @@ header .navbar ul li a:hover {
   border-radius: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   background: rgba(0, 0, 22, 0.9);
-  transition: 0.2s;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* indicates it's interactive */
 }
 .skills .container .bar:hover {
-  box-shadow: 0 8px 10px rgba(0, 2, 68, 0.8) !important;
-  background-color: rgba(0, 0, 0, 0.9) !important;
+  transform: scale(1.1); /* increased scale effect */
+  box-shadow: 0 10px 15px rgba(0, 2, 68, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 .skills .container .bar .info {
   display: flex;
@@ -526,7 +528,7 @@ header .navbar ul li a:hover {
   font-family: "Poppins";
   margin-left: 0.5rem;
 }
-/* skills media queries starts*/
+/* skills media queries starts */
 @media screen and (max-width: 600px) {
   .skills .container {
     padding: 0;
@@ -543,9 +545,8 @@ header .navbar ul li a:hover {
     width: 100%;
   }
 }
-/* skills media queries ends*/
+/* skills media queries ends */
 /* skills section ends */
-
 
 
 
@@ -553,7 +554,7 @@ header .navbar ul li a:hover {
 /* education section starts */
 .education {
   background: var(--light);
-  min-height: 80vh;
+  min-height: 70vh;
 }
 .education .qoute {
   font-size: 1.5rem;
@@ -659,11 +660,10 @@ header .navbar ul li a:hover {
 
 /* education media queries ends*/
 /* education section ends */
-
 /* work section starts */
 .work {
-  /* background: #010124; */
-  background: linear-gradient(to bottom, #000031, #00002c);
+  /* background: #b8b8b8; */
+  /* background: linear-gradient(to bottom, #000031, #00002c); */
 }
 .work h2 {
   color: #fff;
@@ -677,11 +677,15 @@ header .navbar ul li a:hover {
   flex-wrap: wrap;
   gap: 1.5rem;
   margin: 2rem;
+  background: #fff; /* Fond du container en blanc */
+  padding: 2rem;   /* Ajout d'un padding pour un meilleur espacement */
+  border-radius: 0.5rem;
 }
 .work .box-container .box {
   flex: 1 1 30rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--bleu); /* Bordure bleue sur chaque box */
+  border-radius: 1.5rem;
+  box-shadow: 0 0.5rem 1rem var(--bleu);
   position: relative;
   overflow: hidden;
   height: 30rem;
@@ -718,7 +722,7 @@ header .navbar ul li a:hover {
   top: 25%;
 }
 .work .desc {
-  margin: 2rem;
+  margin: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -730,7 +734,7 @@ header .navbar ul li a:hover {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 0rem;
 }
 .work .desc .btns .btn {
   line-height: 0;
@@ -780,6 +784,11 @@ header .navbar ul li a:hover {
 }
 /* work section ends */
 
+/* work section ends */
+.experience{
+  min-height: 70vh;
+
+}
 /* experience section starts */
 .experience .timeline {
   position: relative;
@@ -929,12 +938,12 @@ header .navbar ul li a:hover {
 }
 
 .blue {
-  background-color: blue;
+  background-color: var(--bleu);
   animation-delay: 0s;
 }
 
 .yellow {
-  background-color: yellow;
+  background-color: var(--jaune);
   animation-delay: 0.3s;
 }
 
@@ -961,7 +970,7 @@ header .navbar ul li a:hover {
 /* Media queries - Responsive timeline on screens less than 600px wide */
 @media screen and (max-width: 600px) {
   .experience {
-    min-height: 80vh;
+    min-height: 70vh;
   }
   .experience .timeline {
     margin-top: 2rem;
@@ -1393,13 +1402,16 @@ form .button-area {
   justify-content: center;
   text-align: center;
   /* background-color: #007bff; Couleur primaire */
-  height: 35vh;
-  padding: 2rem;
+  /* height: 25%; */
+  padding-top:80px;
+  padding-bottom:40px;
 }
 .bg-appointment {
   background: linear-gradient(rgba(9, 30, 62, .85), rgba(9, 30, 62, .85)), url('https://media.istockphoto.com/id/1507501086/photo/american-wave-flag-background-usa.webp?s=2048x2048&w=is&k=20&c=DPnCSmojHejIirMVfO0h401lAb3c5TmZJ4f_MZRyCIQ=') center center no-repeat;
   background-size: cover;
 }
+
+
 /* Conteneur du contenu */
 .appointment-content {
   max-width: 800px;
@@ -1408,7 +1420,7 @@ form .button-area {
 
 /* Titre */
 .appointment-title {
-  font-size: 2.5rem;
+  font-size: 5.5rem;
   color: white;
   margin-bottom: 1rem;
   font-weight: bold;
@@ -1427,7 +1439,7 @@ form .button-area {
   }
 
   .appointment-title {
-    font-size: 2rem;
+    font-size: 3.5rem;
   }
 
   .appointment-text {
@@ -1437,12 +1449,13 @@ form .button-area {
 
 @media (max-width: 768px) {
   .appointment-section {
-    height: 45vh; /* Ajustement sur mobile */
-    padding: 1.5rem;
+    padding-top: 100px;
+    height: 20vh; /* Ajustement sur mobile */
+    /* padding: 1.5rem; */
   }
 
   .appointment-title {
-    font-size: 1.8rem;
+    font-size: 3.5rem;
   }
 
   .appointment-text {
