@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Loading from "../Loading.jsx"; // Ajustez le chemin si nécessaire
+import Loading from "../Loading.jsx";
 
 const Experience = () => {
   const [experiences, setExperiences] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Récupération des données depuis l'API
+    // Animation Observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    // Récupération des données
     const fetchExperiences = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/experience/`);
@@ -21,9 +33,16 @@ const Experience = () => {
               ? new Date(exp.date_fin).toLocaleDateString()
               : "Present"
           }`,
-          alignment: index % 2 === 0 ? "right" : "left", // Alternance des alignements
+          alignment: index % 2 === 0 ? "right" : "left",
         }));
         setExperiences(formattedData);
+
+        // Observer les éléments après chargement
+        setTimeout(() => {
+          document.querySelectorAll(".timeline-item").forEach((el) => {
+            observer.observe(el);
+          });
+        }, 100);
       } catch (error) {
         console.error("Erreur lors du chargement des expériences :", error);
       } finally {
@@ -32,6 +51,8 @@ const Experience = () => {
     };
 
     fetchExperiences();
+
+    return () => observer.disconnect();
   }, []);
 
   if (loading) {
@@ -46,49 +67,51 @@ const Experience = () => {
 
   return (
     <>
- <div className="appointment-section bg-appointment">
-  {/* Flex container to perfectly center the content */}
-  <div className="appointment-content">
-    <h1 className="appointment-title">
-      <i className="fas fa-briefcase"></i> Experience
-    </h1>
-    <p className="appointment-text">
-      Explore my diverse career where innovation and technical expertise come together to create effective digital solutions. My passion drives me to overcome today's tech challenges.
-    </p>
-  </div>
-</div>
+      <div className="appointment-section bg-appointment">
+        <div className="appointment-content">
+          <h1 className="appointment-title">
+            <i className="fas fa-briefcase"></i> Experience
+          </h1>
+          <p className="appointment-text">
+            Explore my diverse career where innovation and technical expertise come together to create effective digital solutions.
+          </p>
+        </div>
+      </div>
 
-
-  <section className="experience" id="experience">
-      <h2 className="heading">
-      </h2>
-
-      <div className="timeline">
-        {experiences.map((exp) => (
-          <div className={`container ${exp.alignment}`} key={exp.id}>
-            <div className="content">
-              <div className="tag">
-                <h2>{exp.company}</h2>
-              </div>
-              <div className="desc">
-                <h3>
-                  {exp.role} ({exp.type})
-                </h3>
-                <p>{exp.duration}</p>
+      <section className="experience" id="experience">
+        <div className="timeline">
+          {experiences.map((exp, index) => (
+            <div 
+              className={`container ${exp.alignment} timeline-item`} 
+              key={exp.id}
+              style={{ "--delay": `${index * 0.15}s` }}
+            >
+              <div className="content">
+                <div className="tag">
+                  <h2>{exp.company}</h2>
+                </div>
+                <div className="desc">
+                  <h3>
+                    {exp.role} ({exp.type})
+                  </h3>
+                  <p>{exp.duration}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <div className="morebtn">
-        <a href="/experience" className="btn">
-          <span>View All</span>
-          <i className="fas fa-arrow-right"></i>
-        </a>
-      </div>
-    </section></>
- 
+        <div 
+          className="morebtn timeline-item" 
+          style={{ "--delay": `${experiences.length * 0.15}s` }}
+        >
+          <a href="/experience" className="btn">
+            <span>View All</span>
+            <i className="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </section>
+    </>
   );
 };
 

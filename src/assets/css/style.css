@@ -356,21 +356,57 @@ header .navbar ul li a:hover {
 /* hero section end */
 
 /* about section starts */
-.about {
-  color: #000;
-  background: rgb(255, 255, 255);
-  min-height: 70vh;
-
+/* Animation Styles */
+.animate-on-scroll {
+  opacity: 0;
+  transition: all 0.6s ease-out;
 }
+
+.appointment-section.animate-on-scroll {
+  transform: translateY(30px);
+}
+
+.image.animate-on-scroll {
+  transform: translateX(-50px);
+}
+
+.content.animate-on-scroll {
+  transform: translateX(50px);
+}
+
+.d-flex.gap-4.animate-on-scroll,
+.resumebtn.animate-on-scroll {
+  transform: translateY(30px);
+}
+
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* Existing About Styles */
+.appointment-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  /* background: linear-gradient(135deg, #02094b 0%, #1a047e 100%); */
+  color: white;
+}
+
+.appointment-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .about .row {
   display: flex;
-  flex-direction: row;
-  gap: 2rem;
   flex-wrap: wrap;
-  padding: rem;
+  gap: 2rem;
+  align-items: center;
+  padding: 0.5rem;
+  margin-bottom: 7rem;
 }
+
 .about .row .image {
-  text-align: center;
   flex: 1 1 35rem;
 }
 .about .row .image img {
@@ -383,16 +419,9 @@ header .navbar ul li a:hover {
   transition: 0.3s;
   cursor: pointer;
 }
-.about .row .image img:hover {
-  mix-blend-mode: normal;
-}
 .about .row .content {
   flex: 1 1 45rem;
-  padding: 3rem;
-}
-.about .row .content h3 {
-  color: rgb(27, 27, 27);
-  font-size: 2.5rem;
+  padding: 1rem;
 }
 .about .row .content .tag {
   font-size: 1.4rem;
@@ -416,59 +445,103 @@ header .navbar ul li a:hover {
   font-family: "Nunito";
   font-weight: 600;
 }
+.resume{
+  padding: 10px 20px;
+  font-size:15px;
+  background-color: var(--bleu);
+  color: white;
+  border-radius:12px
+}
+
+.about .row .content .box-container .box {
+  flex: 1 1 20rem;
+}
+
 .about .row .content .box-container .box p {
-  text-transform: none;
+  margin: 0;
+  font-size: 1.5rem;
 }
+
 .about .row .content .box-container .box p span {
-  color: #011aff;
-}
-.resumebtn {
-  margin-top: 6rem;
-}
-.resumebtn .btn {
-  padding: 1.7rem 3rem;
-  border-radius: 0.5em;
-  transition: 0.3s;
-  color: #fff;
-  background: var(--bleu);
-  box-shadow: 0px 5px 10px rgba(48, 68, 247, 0.6);
-  font-family: "Nunito", sans-serif;
-}
-.resumebtn .btn span {
+  color: var(--jaune);
   font-weight: 600;
-  font-size: 1.8rem;
-  letter-spacing: 0.1rem;
 }
-.resumebtn .btn i {
-  margin-left: 0.3rem;
-  font-size: 1.2rem;
-  transition: 0.3s;
+
+.resumebtn .btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--bleu);
+  color: white;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
+
 .resumebtn .btn:hover {
-  background: #1a047e;
+  background-color: #1a047e;
 }
-.resumebtn .btn:hover i {
-  transform: translateX(5px);
+.social-resume-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
 }
-/* about media queries starts*/
-@media screen and (max-width: 600px) {
-  .about .row .image {
-    margin-top: 2rem;
+
+/* Pour uniformiser la taille des boutons */
+.social-resume-container .btn {
+  min-width: 180px;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Style hover pour le bouton CV */
+.social-resume-container .btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .social-resume-container {
+    flex-direction: column;
+    align-items: stretch;
   }
-  .about .row .image img {
-    margin: 0 auto;
-    width: 80%;
-    mix-blend-mode: normal;
+  
+  .social-resume-container .btn {
+    width: 100%;
   }
+}
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .appointment-section h1 {
+    font-size: 2.5rem !important;
+  }
+  
   .about .row {
-    padding: 0.5rem;
-    margin-bottom: 7rem;
+    flex-direction: column;
+    margin-bottom: 3rem;
   }
-  .about .row .content {
-    padding: 1rem;
+  
+  .image.animate-on-scroll,
+  .content.animate-on-scroll {
+    transform: translateY(30px);
   }
+  
   .about .row .content .box-container {
     gap: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .d-flex.gap-4 {
+    flex-direction: column;
+    gap: 1rem !important;
+  }
+  
+  .btn-lg {
+    width: 100%;
+    justify-content: center;
   }
 }
 /* about media queries ends*/
@@ -811,6 +884,46 @@ header .navbar ul li a:hover {
   position: relative;
   background-color: inherit;
   width: 50%;
+}
+/* Animations */
+.timeline-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: var(--delay);
+}
+
+.timeline-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Votre section d'en-tête */
+.appointment-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  /* background: linear-gradient(135deg, #02094b 0%, #1a047e 100%); */
+  color: white;
+}
+
+.appointment-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.appointment-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.appointment-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Icône */
+.appointment-title i {
+  margin-right: 15px;
 }
 /*circles on timeline*/
 .experience .container::after {
@@ -1416,6 +1529,7 @@ form .button-area {
 .appointment-content {
   max-width: 800px;
   width: 100%;
+  color: var(--bleu)!important;
 }
 
 /* Titre */
