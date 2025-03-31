@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Loading from '../Loading.jsx'; // Ajustez le chemin d'importation si nécessaire
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 const Education = () => {
   const [educations, setEducations] = useState([]);
@@ -19,7 +22,9 @@ const Education = () => {
         setLoading(false);
       });
   }, []);
-
+  useEffect(() => {
+    AOS.init({ duration: 5000 });
+  }, []);
   return (
     <>  
     <div className="appointment-section bg-appointment">
@@ -34,9 +39,8 @@ const Education = () => {
   </div>
 </div>
 
-  <section className="education" id="education">
-      <h1 className="heading">
-      </h1>
+<section className="education" id="education">
+      <h1 className="heading"></h1>
       {loading ? (
         <div className="text-center">
           <Loading />
@@ -44,24 +48,28 @@ const Education = () => {
       ) : (
         <div className="box-container">
           {educations.map((education) => (
-            <div className="box" key={education.id}>
+            <div 
+              className="box" 
+              key={education.id}
+              data-aos="fade-up"  // Animation sur scroll
+            >
               <div className="image">
                 <img
                   draggable="false"
-                  src={education.image} // Dynamique : Image de l'API
+                  src={education.image}
                   alt={education.nom_ecole}
                   style={{
                     width: "150px",
                     height: "150px",
                     objectFit: "cover",
-                    borderRadius: "8px", // Facultatif : bords arrondis
+                    borderRadius: "8px",
                   }}
                 />
               </div>
               <div className="content">
-                <h3>{education.nom_ecole}</h3> {/* Nom de l'école */}
+                <h3>{education.nom_ecole}</h3>
                 <p className="mb-2" style={{ color: "#343a40", fontWeight: "500" }}>
-                  {education.nom_parcours} - {education.lieu} {/* Parcours et lieu */}
+                  {education.nom_parcours} - {education.lieu}
                 </p>
                 <h4>
                   {education.annee_debut} - {education.annee_fin && parseInt(education.annee_fin) > new Date().getFullYear() ? 'present' : education.annee_fin}

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Loading from "../Loading.jsx"; // Assurez-vous que le chemin d'importation est correct
 
 const Skills = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedSkill, setSelectedSkill] = useState(null); // Pour stocker la compétence sélectionnée
+  const [selectedSkill, setSelectedSkill] = useState(null);
+  const [animate, setAnimate] = useState(false);
+  const skillsRef = useRef(null);
 
   useEffect(() => {
     // Appel de l'API pour récupérer les compétences
@@ -20,6 +22,29 @@ const Skills = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setAnimate(true);
+          // On peut se déconnecter de l'observateur dès que l'animation est lancée
+          observer.disconnect();
+        }
+      });
+    };
+
+    const observerOptions = {
+      threshold: 0.7, // Déclenchement quand 30% de l'élément est visible
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    if (skillsRef.current) {
+      observer.observe(skillsRef.current);
+    }
+    
+    return () => observer.disconnect();
+  }, [loading]);
+
   const handleInfoClick = (skill) => {
     setSelectedSkill(skill);
   };
@@ -31,7 +56,6 @@ const Skills = () => {
   return (
     <>
       <div className="appointment-section bg-appointment">
-        {/* Conteneur flex pour centrer le contenu */}
         <div className="appointment-content">
           <h1 className="appointment-title">
             <i className="fas fa-laptop-code"></i> Skills & <span>Abilities</span>
@@ -42,7 +66,7 @@ const Skills = () => {
         </div>
       </div>
 
-      <section className="skills py-5" id="skills">
+      <section className="skills py-5" id="skills" ref={skillsRef}>
         <div className="container">
           <h2 className="heading text-center mb-4"></h2>
           {loading ? (
@@ -69,19 +93,22 @@ const Skills = () => {
                           borderRadius: "8px",
                         }}
                       />
-                      <h5 className="card-title text-dark">{skill.name}    <button
-                        onClick={() => handleInfoClick(skill)}
-                        style={{
-                          border: "none",
-                          background: "black",
-                          cursor: "pointer",
-                          marginLeft: "10px",
-                          borderRadius: "50%",
-                          color: "white",
-                        }}
-                      >
-                        <i className="fas fa-info-circle"></i>
-                      </button></h5>
+                      <h5 className="card-title text-dark">
+                        {skill.name}{" "}
+                        <button
+                          onClick={() => handleInfoClick(skill)}
+                          style={{
+                            border: "none",
+                            background: "black",
+                            cursor: "pointer",
+                            marginLeft: "10px",
+                            borderRadius: "50%",
+                            color: "white",
+                          }}
+                        >
+                          <i className="fas fa-info-circle"></i>
+                        </button>
+                      </h5>
                       {/* Barre de progression */}
                       <div
                         style={{
@@ -94,17 +121,17 @@ const Skills = () => {
                       >
                         <div
                           style={{
-                            width: `${skill.niveau * 10}%`,
+                            width: animate ? `${skill.niveau * 10}%` : "0%",
                             backgroundColor: "#f68c09",
                             height: "100%",
                             borderRadius: "10px",
-                            transition: "width 0.5s ease-in-out",
+                            transition: "width 3s ease-in-out",
                           }}
                         ></div>
                       </div>
-                      <p className="text-muted">{skill.niveau * 10}%</p>
-                      {/* Icône d'info pour afficher la description dans une modale */}
-                   
+                      <p className="text-muted">
+                        {animate ? `${skill.niveau * 10}%` : "0%"}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -114,53 +141,51 @@ const Skills = () => {
         </div>
       </section>
 
-      {/* Modale pour afficher la description de la compétence sélectionnée */}
       {selectedSkill && (
-  <div
-    className="modal-overlay"
-    onClick={closeModal}
-    style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      zIndex: 1000,
-    }}
-  >
-    <div
-      className="modal-content"
-      onClick={(e) => e.stopPropagation()}
-      style={{
-        position: "relative", // Makes the close button position relative to this container
-        background: "#fff",
-        padding: "20px",
-        borderRadius: "8px",
-        maxWidth: "500px",
-        width: "90%",
-      }}
-    >
-      <button
-        onClick={closeModal}
-        className="btn btn-danger"
-        style={{
-          position: "absolute",
-          top: "10px",
-          right: "10px",
-        }}
-      >
-        X
-      </button>
-      <h2>{selectedSkill.name}</h2>
-      <p>{selectedSkill.description}</p>
-    </div>
-  </div>
-)}
-
+        <div
+          className="modal-overlay"
+          onClick={closeModal}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+        >
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: "relative",
+              background: "#fff",
+              padding: "20px",
+              borderRadius: "8px",
+              maxWidth: "500px",
+              width: "90%",
+            }}
+          >
+            <button
+              onClick={closeModal}
+              className="btn btn-danger"
+              style={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+              }}
+            >
+              X
+            </button>
+            <h2>{selectedSkill.name}</h2>
+            <p>{selectedSkill.description}</p>
+          </div>
+        </div>
+      )}
     </>
   );
 };

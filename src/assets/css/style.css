@@ -750,6 +750,11 @@ header .navbar ul li a:hover {
     margin: 0; /* Évite les marges additionnelles */
   }
 }
+/* Exemple de personnalisation */
+.aos-animate {
+  transition-timing-function: ease-in-out;
+}
+
 
 /* education media queries ends*/
 /* education section ends */
@@ -1295,6 +1300,35 @@ form .button-area {
     margin-right: 2rem;
   }
 }
+
+/* Contact Section */
+.image-box {
+  height: 500px;
+  width: 100%;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  background: #1a202c;
+}
+
+.canvas-container {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .image-box {
+    height: 300px;
+    margin-bottom: 2rem;
+  }
+  
+  .content {
+    flex-direction: column;
+  }
+}
+
 /* contact section media queries ends */
 /* contact section ends */
 
