@@ -360,7 +360,7 @@ header .navbar ul li a:hover {
 /* Animation Styles */
 .animate-on-scroll {
   opacity: 0;
-  transition: all 0.6s ease-out;
+  transition: all 1.5s ease-out;
 }
 
 .appointment-section.animate-on-scroll {
@@ -462,7 +462,7 @@ header .navbar ul li a:hover {
   font-size: 1.5rem;
 }
 
-.about .row .content .box-container .box p span {
+.about .row .content .box-container  p span {
   color: var(--jaune);
   font-weight: 600;
 }
@@ -560,9 +560,7 @@ header .navbar ul li a:hover {
     margin-top: 1rem!important; /* Réduction de la marge supérieure */
 
   }
-  .box {
-    flex: 1 1 0rem!important;
-}
+
 }
 
 

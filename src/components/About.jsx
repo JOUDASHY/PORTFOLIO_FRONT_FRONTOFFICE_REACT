@@ -101,7 +101,7 @@ const About = () => {
           </p>
   
           <div className="box-container">
-            <div className="box">
+            <div className="">
               <p>
                 <span>Email:</span> {profile.email}
               </p>
