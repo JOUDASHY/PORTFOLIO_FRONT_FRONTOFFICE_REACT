@@ -357,6 +357,7 @@ header .navbar ul li a:hover {
 
 /* about section starts */
 /* Animation Styles */
+/* Animation Styles */
 .animate-on-scroll {
   opacity: 0;
   transition: all 0.6s ease-out;
@@ -384,11 +385,10 @@ header .navbar ul li a:hover {
   transform: translate(0);
 }
 
-/* Existing About Styles */
+/* Section Appointment */
 .appointment-section {
   padding: 4rem 2rem;
   text-align: center;
-  /* background: linear-gradient(135deg, #02094b 0%, #1a047e 100%); */
   color: white;
 }
 
@@ -397,6 +397,7 @@ header .navbar ul li a:hover {
   margin: 0 auto;
 }
 
+/* Section About */
 .about .row {
   display: flex;
   flex-wrap: wrap;
@@ -415,7 +416,6 @@ header .navbar ul li a:hover {
   height: auto;
   border-radius: 5%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
-  /* mix-blend-mode: luminosity; */
   transition: 0.3s;
   cursor: pointer;
 }
@@ -432,25 +432,25 @@ header .navbar ul li a:hover {
 .about .row .content p {
   font-size: 1.8rem;
   margin-top: 1.5rem;
-  font-family: "Nunito";
+  font-family: "Nunito", sans-serif;
   font-weight: 600;
   text-transform: none;
-  line-height: 1.8; /* Ajustez cette valeur selon vos besoins */
+  line-height: 1.8;
 }
 
 .about .row .content .box-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  font-family: "Nunito";
+  font-family: "Nunito", sans-serif;
   font-weight: 600;
 }
-.resume{
+.resume {
   padding: 10px 20px;
-  font-size:15px;
+  font-size: 15px;
   background-color: var(--bleu);
   color: white;
-  border-radius:12px
+  border-radius: 12px;
 }
 
 .about .row .content .box-container .box {
@@ -481,6 +481,7 @@ header .navbar ul li a:hover {
 .resumebtn .btn:hover {
   background-color: #1a047e;
 }
+
 .social-resume-container {
   display: flex;
   flex-wrap: wrap;
@@ -488,31 +489,18 @@ header .navbar ul li a:hover {
   gap: 1.5rem;
 }
 
-/* Pour uniformiser la taille des boutons */
 .social-resume-container .btn {
   min-width: 180px;
   justify-content: center;
   transition: all 0.3s ease;
 }
 
-/* Style hover pour le bouton CV */
 .social-resume-container .btn:hover {
   opacity: 0.9;
   transform: translateY(-2px);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .social-resume-container {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .social-resume-container .btn {
-    width: 100%;
-  }
-}
-/* Responsive Styles */
+/* Responsive pour tablettes et mobiles */
 @media screen and (max-width: 768px) {
   .appointment-section h1 {
     font-size: 2.5rem !important;
@@ -530,9 +518,11 @@ header .navbar ul li a:hover {
   
   .about .row .content .box-container {
     gap: 0;
+    flex-direction: column;
   }
 }
 
+/* Responsive pour mobiles plus petits */
 @media screen and (max-width: 480px) {
   .d-flex.gap-4 {
     flex-direction: column;
@@ -543,7 +533,39 @@ header .navbar ul li a:hover {
     width: 100%;
     justify-content: center;
   }
+  
+  /* Ajustement des marges pour l'image */
+  .about .row .image img {
+    margin: 2rem auto;
+    width: 90%;
+  }
+  
+  /* Réduction des polices pour le contenu */
+  .about .row .content h1 {
+    font-size: 2.5rem;
+  }
+  .about .row .content p,
+  .about .row .content .tag {
+    font-size: 1.4rem;
+  }
 }
+@media screen and (max-width: 480px) {
+  .social-resume-container .btn {
+    font-size: 10px !important;
+    padding: 8px 14px !important;
+  }
+}@media screen and (max-width: 480px) {
+  .social-resume-container {
+    gap: 0.5rem!important; /* Réduction de l'espacement entre les boutons */
+    margin-top: 1rem!important; /* Réduction de la marge supérieure */
+
+  }
+  .box {
+    flex: 1 1 0rem!important;
+}
+}
+
+
 /* about media queries ends*/
 /* about section ends */
 /* skills section starts */
