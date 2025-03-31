@@ -6,7 +6,8 @@ const Skills = () => {
   const [loading, setLoading] = useState(true);
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [animate, setAnimate] = useState(false);
-  const skillsRef = useRef(null);
+  // On applique le ref sur un élément plus petit, ici le container
+  const containerRef = useRef(null);
 
   useEffect(() => {
     // Appel de l'API pour récupérer les compétences
@@ -25,21 +26,20 @@ const Skills = () => {
   useEffect(() => {
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
+        console.log("Intersection status:", entry.isIntersecting);
         if (entry.isIntersecting) {
           setAnimate(true);
-          // On peut se déconnecter de l'observateur dès que l'animation est lancée
-          observer.disconnect();
         }
       });
     };
 
     const observerOptions = {
-      threshold: 0.7, // Déclenchement quand 30% de l'élément est visible
+      threshold: 0.3, // On ajuste le seuil pour mieux détecter sur mobile
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-    if (skillsRef.current) {
-      observer.observe(skillsRef.current);
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
     }
     
     return () => observer.disconnect();
@@ -66,8 +66,8 @@ const Skills = () => {
         </div>
       </div>
 
-      <section className="skills py-5" id="skills" ref={skillsRef}>
-        <div className="container">
+      <section className="skills py-5" id="skills">
+        <div className="container" ref={containerRef}>
           <h2 className="heading text-center mb-4"></h2>
           {loading ? (
             <div className="text-center">
