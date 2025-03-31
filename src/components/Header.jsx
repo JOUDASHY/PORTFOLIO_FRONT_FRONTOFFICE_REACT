@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Image from "../assets/images/logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const headerRef = useRef(null);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen(prev => !prev);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Si le clic est en dehors du header, on ferme le menu
+      if (headerRef.current && !headerRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <header>
+    <header ref={headerRef}>
       <NavLink to="/" className="logo">
         <img 
           src={Image} 
-          alt="" 
+          alt="Logo" 
           style={{ width: '1.5em', height: '1.5em', objectFit: 'contain', marginRight: '0.5em' }} 
         />
         Portfolio
