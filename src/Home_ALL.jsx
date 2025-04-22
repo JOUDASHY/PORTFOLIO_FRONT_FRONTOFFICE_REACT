@@ -91,7 +91,7 @@ function App() {
       <Experience />
       <Projects />
       <Contact />
-      <Footer />
+      {/* <Footer /> */}
 
       <a href="#home" aria-label="ScrollTop" className="fas fa-angle-up" id="scroll-top"></a>
     </>
