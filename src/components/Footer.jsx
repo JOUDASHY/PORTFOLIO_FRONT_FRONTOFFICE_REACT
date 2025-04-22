@@ -5,100 +5,97 @@ const Footer = () => {
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
-    // Remplacez par votre URL d'API
     axios
       .get(`${import.meta.env.VITE_API_BASE_URL}/api/NilsenProfile/`)
-      .then((response) => {
-        setProfile(response.data);
-      })
-      .catch((error) => {
-        console.error("Erreur lors du chargement du profil :", error);
-      });
+      .then((res) => setProfile(res.data))
+      .catch((err) => console.error("Erreur de chargement :", err));
   }, []);
 
-  if (!profile) {
-    return <p>Chargement...</p>; // Affiche un message de chargement
-  }
+  if (!profile) return <p className="text-center py-5">Chargement...</p>;
 
   return (
-    <section className="footer">
-      <div className="box-container">
-        <div className="box">
-          <h3>{profile.username}'s Portfolio</h3>
-          <p>
-            {profile.about} <br /> <br />
-          
-          </p>
-        </div>
+    <footer className="bg-blue text-light pt-5">
+      <div className="container">
+        <div className="row gy-4">
+          {/* À propos */}
+          <div className="col-md-4">
+            <h5>{profile.username}'s Portfolio</h5>
+            <p className="small">
+              {profile.about}
+            </p>
+          </div>
 
-        <div className="box">
-          <h3>Quick Links</h3>
-          <a href="#home">
-            <i className="fas fa-chevron-circle-right"></i> Home
-          </a>
-          <a href="#about">
-            <i className="fas fa-chevron-circle-right"></i> About
-          </a>
-          <a href="#skills">
-            <i className="fas fa-chevron-circle-right"></i> Skills
-          </a>
-          <a href="#projects">
-            <i className="fas fa-chevron-circle-right"></i> Projects
-          </a>
-          <a href="#education">
-            <i className="fas fa-chevron-circle-right"></i> Education
-          </a>
-          <a href="#experience">
-            <i className="fas fa-chevron-circle-right"></i> Experience
-          </a>
-          
+          {/* Liens rapides */}
+          <div className="col-md-4">
+            <h5>Quick Links</h5>
+            <ul className="list-unstyled">
+              {["home","about","skills","projects","education","experience"].map((id) => (
+                <li key={id}>
+                  <a href={`#${id}`} className="color-jaune text-decoration-none">
+                    <i className="fas fa-chevron-circle-right me-2"></i>
+                    {id.charAt(0).toUpperCase() + id.slice(1)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-
-          
-        </div>
-
-        <div className="box">
-          <h3>Contact Info</h3>
-          <p>
-            <i className="fas fa-phone"></i> +261 {profile.phone_number}
-          </p>
-          <p>
-            <i className="fas fa-envelope"></i> {profile.email}
-          </p>
-          <p>
-            <i className="fas fa-map-marked-alt"></i> {profile.address}
-          </p>
-          <div className="share">
-            <a
-              href={profile.link_linkedin}
-              className="fab fa-linkedin"
-              aria-label="LinkedIn"
-              target="_blank"
-              rel="noopener noreferrer"
-            ></a>
-            <a
-              href={profile.link_facebook}
-              className="fab fa-facebook"
-              aria-label="Facebook"
-              target="_blank"
-              rel="noopener noreferrer"
-            ></a>
-            <a
-              href={`mailto:${profile.email}`}
-              className="fas fa-envelope"
-              aria-label="Mail"
-              target="_blank"
-              rel="noopener noreferrer"
-            ></a>
+          {/* Contact */}
+          <div className="col-md-4">
+            <h5>Contact Info</h5>
+            <p>
+              <i className="fas fa-phone me-2"></i>+261 {profile.phone_number}
+            </p>
+            <p>
+              <i className="fas fa-envelope me-2"></i>{profile.email}
+            </p>
+            <p>
+              <i className="fas fa-map-marker-alt me-2"></i>{profile.address}
+            </p>
+            <div className="mt-3">
+              <a
+                href={profile.link_linkedin}
+                className="btn btn-outline-light btn-sm me-2"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <i className="color-jaune fab fa-linkedin"></i>
+              </a>
+              <a
+                href={profile.link_facebook}
+                className="btn btn-outline-light btn-sm me-2"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <i className="color-jaune fab fa-facebook"></i>
+              </a>
+              <a
+                href={`mailto:${profile.email}`}
+                className="btn btn-outline-light btn-sm "
+                aria-label="Email"
+              >
+                <i className="color-jaune fas fa-envelope"></i>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <h1 className="credit">
-        Designed by{" "}
-        <a href={profile.link_linkedin}>{profile.username}</a>
-      </h1>
-    </section>
+        {/* Crédits */}
+        <div className="text-center mt-4 pb-3 border-top border-secondary">
+          <small className="color-jaune">
+            Designed by&nbsp;
+            <a
+              href={profile.link_linkedin}
+              className="text-decoration-none color-blue-ciel fw-bold"
+            >
+              {profile.username}
+            </a>
+          </small>
+        </div>
+      </div>
+    </footer>
   );
 };
 

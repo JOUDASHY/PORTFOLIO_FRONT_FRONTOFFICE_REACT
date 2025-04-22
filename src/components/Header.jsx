@@ -6,103 +6,67 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const headerRef = useRef(null);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(prev => !prev);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Si le clic est en dehors du header, on ferme le menu
       if (headerRef.current && !headerRef.current.contains(event.target)) {
         setIsMenuOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
-    <header ref={headerRef}>
-      <NavLink to="/" className="logo">
-        <img 
-          src={Image} 
-          alt="Logo" 
-          style={{ width: '1.5em', height: '1.5em', objectFit: 'contain', marginRight: '0.5em' }} 
-        />
-        Portfolio
-      </NavLink>
+    <header ref={headerRef} className="navbar navbar-expand-lg navbar-dark bg-blue fixed-top">
+      <div className="container-fluid">
+        <NavLink to="/" className="navbar-brand d-flex align-items-center">
+          <img 
+            src={Image} 
+            alt="Logo" 
+            className="me-2 bg-jaune p-1"  
+            style={{ width: '1.5em', height: '1.5em', objectFit: 'contain',borderRadius: '50%' }}
 
-      <div id="menu" className="fas fa-bars" onClick={toggleMenu}></div>
-      <nav className={`navbar ${isMenuOpen ? 'active' : ''}`}>
-        <ul>
-          <li>
-            <NavLink 
-              to="/" 
-              className={({ isActive }) => (isActive ? 'active' : '')}
-              onClick={toggleMenu}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to="/about" 
-              className={({ isActive }) => (isActive ? 'active' : '')}
-              onClick={toggleMenu}
-            >
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to="/skills" 
-              className={({ isActive }) => (isActive ? 'active' : '')}
-              onClick={toggleMenu}
-            >
-              Skills
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to="/education" 
-              className={({ isActive }) => (isActive ? 'active' : '')}
-              onClick={toggleMenu}
-            >
-              Education
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to="/projects" 
-              className={({ isActive }) => (isActive ? 'active' : '')}
-              onClick={toggleMenu}
-            >
-              Projects
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to="/experience" 
-              className={({ isActive }) => (isActive ? 'active' : '')}
-              onClick={toggleMenu}
-            >
-              Experience
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to="/contact" 
-              className={({ isActive }) => (isActive ? 'active' : '')}
-              onClick={toggleMenu}
-            >
-              Contact
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
+          />
+          Portfolio
+        </NavLink>
+
+        <button 
+          className="navbar-toggler" 
+          type="button" 
+          onClick={toggleMenu}
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="navbarNav">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            {[
+              { path: "/", name: "Home" },
+              { path: "/about", name: "About" },
+              { path: "/skills", name: "Skills" },
+              { path: "/education", name: "Education" },
+              { path: "/projects", name: "Projects" },
+              { path: "/experience", name: "Experience" },
+              { path: "/contact", name: "Contact" }
+            ].map((item) => (
+              <li className="nav-item" key={item.name}>
+                <NavLink 
+                  to={item.path} 
+                  className={({ isActive }) => 
+                    `nav-link ${isActive ? 'active fw-bold' : ''}`
+                  }
+                  onClick={toggleMenu}
+                >
+                  {item.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </header>
   );
 };
