@@ -7,13 +7,13 @@ import Contact from './components/Contact.jsx';
 import Experience from './components/Experience.jsx';
 import Header from './components/Header.jsx';
 import Home from './components/Home.jsx';
-import Education from './components/Education.jsx';
-import Footer from './components/Footer.jsx';
+import Banner1 from './components/Banner1.jsx';Banner1
+import Banner from './components/Banner.jsx';
 import Projects from './components/Projects.jsx';
 // import Appointment from './Appointment.jsx';
 
-import './assets/css/style.css';
-import './assets/css/404.css';
+// import './assets/css/style.css';
+// import './assets/css/404.css';
 
 import ScrollReveal from 'scrollreveal';
 import Typed from 'typed.js';
@@ -84,14 +84,16 @@ function App() {
       {/* 🧩 Ton site */}
       <Header />
       <Home />
+      
       <About />
+      <Banner />
       <Skills />
-      <Education />
-      {/* <Appointment /> */}
+
       <Experience />
+      <Banner1 />
       <Projects />
       <Contact />
-      <Footer />
+      {/* <Footer /> */}
 
       <a href="#home" aria-label="ScrollTop" className="fas fa-angle-up" id="scroll-top"></a>
     </>

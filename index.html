@@ -13,6 +13,93 @@
     <!-- Favicon -->
     <link id='favicon' rel="shortcut icon" href="src/assets/images/logo.png" type="image/x-png">
     <title>Portfolio | Nilsen Tovohery</title>
+      <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+  --blue: #000b31;
+  --jaune:#f68c09;
+  --light:#e5ecfb;
+  --blue-ciel:#00d9ff;
+  
+  --secondary-color: #2ecc71;
+  --font-family: 'Arial', sans-serif;
+}
+
+.bg-blue{
+  background-color: var(--blue);
+}
+.bg-jaune{
+  background-color: var(--jaune);
+}
+.bg-blue-ciel{
+  background-color: var(--blue-ciel);
+}
+.color-jaune{
+  color: var(--jaune);
+}
+.color-blue-ciel{
+  color: var(--blue-ciel);
+}
+.color-blue{
+  color: var(--blue);
+}
+
+.btn-blue, .btn-jaune {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: var(--font-family);
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+}
+
+.btn-blue {
+  background-color: var(--blue);
+  color: white;
+}
+
+.btn-jaune {
+  background-color: var(--jaune);
+  color: black;
+}
+.btn-blue-ciel {
+  background-color: var(--blue-ciel);
+  color: black;
+}
+
+/* Styles par défaut pour les écrans de bureau */
+.btn-blue, .btn-jaune, .btn-blue-ciel {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+/* Styles pour les écrans de taille mobile */
+@media (max-width: 768px) {
+  .btn-blue, .btn-jaune, .btn-blue-ciel {
+    padding: 8px 16px;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-blue, .btn-jaune, .btn-blue-ciel {
+    padding: 6px 12px;
+    font-size: 12px;
+    line-height: 1.1;
+  }
+}
+
+
+
+</style>
+
 </head>
   <body>
     <div id="root"></div>
@@ -31,10 +118,16 @@
 
 <!-- typed.js cdn -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js" integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- particle.js links -->
 <script src="/src/assets/js/particles.min.js"></script>
 <script src="/src/assets/js/app.js"></script>
+
+
+
+
 
 <!-- vanilla tilt.js links -->
 <link
@@ -48,7 +141,7 @@
   integrity="sha384-pprn3073KE6tl6NJTxuMBcfQHEecLKxrmT5A6MxHc09jz30Ok5LJ2QqkLwwQ4E7d"
   crossorigin="anonymous"
 ></script>
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
 
 <!-- scroll reveal anim -->
 <script src="https://unpkg.com/scrollreveal"></script>
@@ -60,9 +153,9 @@
 
 <!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
 
-<script src="/src/assets/js/script.js"></script>
+<!-- <script src="/src/assets/js/script.js"></script> -->
 
-<script src="//cdn.jsdelivr.net/npm/three-globe"></script>
+<!-- <script src="//cdn.jsdelivr.net/npm/three-globe"></script> -->
 
 
   </body>

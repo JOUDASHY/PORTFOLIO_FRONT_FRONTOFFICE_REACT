@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Loading from '../Loading.jsx'; // Ajustez le chemin d'importation si nécessaire
+import Loading from '../Loading.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
 
 const Education = () => {
   const [educations, setEducations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [aosLoading, setAosLoading] = useState(true); // État de chargement pour AOS
 
-  // Fonction pour récupérer les données de l'API
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_BASE_URL}/api/education/`)
       .then((response) => {
-        setEducations(response.data); // Met à jour l'état avec les données récupérées
+        setEducations(response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -22,65 +21,88 @@ const Education = () => {
         setLoading(false);
       });
   }, []);
-  useEffect(() => {
-    AOS.init({ duration: 5000 });
-  }, []);
-  return (
-    <>  
-    <div className="appointment-section bg-appointment">
-  {/* Flex container to center content perfectly */}
-  <div className="appointment-content">
-    <h1 className="appointment-title">
-      <i className="fas fa-graduation-cap"></i> My <span>Education</span>
-    </h1>
-    <p className="appointment-text">
-      Explore the educational experiences that have laid the foundation for my professional journey. From rigorous academic studies to hands-on projects, discover how my education has fueled my passion for development and innovation.
-    </p>
-  </div>
-</div>
 
-<section className="education" id="education">
-      <h1 className="heading"></h1>
-      {loading ? (
-        <div className="text-center">
-          <Loading />
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+    setAosLoading(false); // Initialisation d'AOS terminée
+  }, []);
+
+  if (loading || aosLoading) {
+    return (
+      <div className="text-center py-5">
+        <Loading />
+      </div>
+    );
+  }
+
+  return (
+    <section className="py-5 bg-light">
+      <div className="container">
+        {/* Header Section */}
+        <div className="text-center mb-5" data-aos="fade-up">
+          <h2 className="display-5 fw-bold color-jaune mb-3">
+            <i className="fas fa-graduation-cap me-2"></i>
+            My <span className="color-blue">Education</span>
+          </h2>
+          <p className="lead text-muted mx-auto" style={{ maxWidth: '600px' }}>
+            Academic journey and professional qualifications that shaped my technical expertise
+          </p>
         </div>
-      ) : (
-        <div className="box-container">
-          {educations.map((education) => (
-            <div 
-              className="box" 
+
+        {/* Education Timeline */}
+        <div className="row justify-content-center">
+          {educations.map((education, index) => (
+            <div
+              className="col-md-8 mb-4"
               key={education.id}
-              data-aos="fade-up"  // Animation sur scroll
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
             >
-              <div className="image">
-                <img
-                  draggable="false"
-                  src={education.image}
-                  alt={education.nom_ecole}
-                  style={{
-                    width: "150px",
-                    height: "150px",
-                    objectFit: "cover",
-                    borderRadius: "8px",
-                  }}
-                />
-              </div>
-              <div className="content">
-                <h3>{education.nom_ecole}</h3>
-                <p className="mb-2" style={{ color: "#343a40", fontWeight: "500" }}>
-                  {education.nom_parcours} - {education.lieu}
-                </p>
-                <h4>
-                  {education.annee_debut} - {education.annee_fin && parseInt(education.annee_fin) > new Date().getFullYear() ? 'present' : education.annee_fin}
-                </h4>
+              <div className="card shadow-lg h-100">
+                <div className="row g-0">
+                  {/* Institution Logo */}
+                  <div className="col-md-3 d-flex align-items-center justify-content-center p-3">
+                    <img
+                      src={education.image}
+                      alt={education.nom_ecole}
+                      className="img-fluid rounded-2"
+                      style={{
+                        maxWidth: '120px',
+                        maxHeight: '120px',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+
+                  {/* Education Details */}
+                  <div className="col-md-9">
+                    <div className="card-body">
+                      <h3 className="h5 card-title fw-bold text-dark mb-2">
+                        {education.nom_parcours}
+                      </h3>
+                      <div className="d-flex align-items-center mb-2">
+                        <i className="fas fa-university text-muted me-2"></i>
+                        <span className="color-jaune">{education.nom_ecole}</span>
+                      </div>
+                      <div className="d-flex align-items-center mb-3">
+                        <i className="fas fa-map-marker-alt text-muted me-2"></i>
+                        <span className="text-secondary">{education.lieu}</span>
+                      </div>
+                      <div className="badge bg-primary-subtle color-jaune rounded-pill">
+                        {education.annee_debut} -{' '}
+                        {education.annee_fin && parseInt(education.annee_fin) > new Date().getFullYear()
+                          ? 'Present'
+                          : education.annee_fin}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </div>
-      )}
-    </section></>
-   
+      </div>
+    </section>
   );
 };
 
