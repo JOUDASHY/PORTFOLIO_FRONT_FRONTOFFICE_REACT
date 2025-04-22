@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,14 +9,60 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
   const formRef = useRef(null);
+  const [latency, setLatency] = useState(null);
+
+  // Ping front-only via chargement d'image
+  const pingServer = () =>
+    new Promise(resolve => {
+      const img = new Image();
+      const start = performance.now();
+
+      img.onload = () => {
+        const duration = Math.round(performance.now() - start);
+        resolve(duration);
+      };
+
+      img.onerror = () => {
+        console.error('Ping failed');
+        resolve(null);
+      };
+
+      // On ajoute un cache‑buster pour forcer le rechargement
+      img.src = `${logo}?cache=${Date.now()}`;
+    });
+
+  useEffect(() => {
+    // Premier ping
+    pingServer().then(setLatency);
+
+    // Re‑ping toutes les 5 secondes
+    const id = setInterval(() => {
+      pingServer().then(setLatency);
+    }, 5000);
+
+    return () => clearInterval(id);
+  }, []);
+  const resetForm = () => {
+    setFormData({ name: '', email: '', message: '' });
+    if (formRef.current) {
+      formRef.current.reset();
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/emails/`, formData);
-      
+      // Première requête Axios
+      const axiosResponse = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/emails/`, formData);
+
+      // Vérifiez si la première requête a réussi en utilisant une plage de statuts de succès
+      if (!axiosResponse.status || axiosResponse.status >= 300) {
+        throw new Error("Échec d'envoi à la première API");
+      }
+
+      // Deuxième requête Fetch
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -30,26 +76,23 @@ const Contact = () => {
 
       if (result.success) {
         Swal.fire({
-          title: "TRANSMISSION SUCCESS",
-          html: '<div class="color-jaune">MESSAGE ENCRYPTED<br/>RESPONSE PROTOCOL INITIATED</div>',
-          icon: "success",
-          background: 'var(--blue)',
-          confirmButtonColor: '#0ff',
-          customClass: {
-            confirmButton: 'cyber-button'
-          }
+          title: "Bravo !",
+          text: "Message envoyé avec succès.",
+          icon: "success"
         });
-        formRef.current.reset();
-        setFormData({ name: '', email: '', message: '' });
+        resetForm();
+      } else {
+        Swal.fire({
+          title: "Oops !",
+          text: "Échec de l'envoi à Web3Forms",
+          icon: "error"
+        });
       }
-    } catch (error) {
-      toast.error("TRANSMISSION FAILED", {
-        style: { 
-          background: '#f00',
-          color: '#fff',
-          border: '2px solid #0ff',
-          fontSize: '1.2em'
-        }
+    } catch (err) {
+      Swal.fire({
+        title: "Oops !",
+        text: err.message || "Échec d'envoi de message",
+        icon: "error"
       });
     } finally {
       setLoading(false);
@@ -60,9 +103,10 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+
   return (
     <section className="cyber-contact">
-      <div className="cyber-grid">
+  <div className="cyber-grid">
         {/* Left Panel - HUD Interface */}
         <div className="cyber-panel">
           <div className="hud-display">
@@ -85,13 +129,13 @@ const Contact = () => {
               </div>
               <div className="info-line">
                 <span className="label">LATENCY:</span>
-                <span className="value">12ms</span>
+                <span className="value">
+                  {latency !== null ? `${latency} ms` : '—'}
+                </span>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Right Panel - Form Interface */}
         <div className="cyber-form">
           <div className="form-container">
             <form ref={formRef} onSubmit={handleSubmit} className="terminal-form">
