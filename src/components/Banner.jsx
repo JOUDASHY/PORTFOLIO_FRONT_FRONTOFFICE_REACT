@@ -37,7 +37,7 @@ const Banner = () => {
             </div>
 
             <div className="d-flex gap-3 justify-content-center banner-buttons">
-              <NavLink to="/projects" className="btn-jaune btn-lg px-4 py-3 rounded-1 explore-btn">
+              <NavLink to="/projects" className="btn btn-outline-warning btn-lg px-4 py-3 rounded-1 explore-btn">
                 Explore My Work
               </NavLink>
               <NavLink to="/contact" className="btn btn-outline-light btn-lg px-4 py-3 rounded-1 contact-btn">
