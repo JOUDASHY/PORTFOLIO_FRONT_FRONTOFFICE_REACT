@@ -22,43 +22,51 @@ const Skills = () => {
   }, []);
 
   // Animation des cercles au scroll
-  useEffect(() => {
-    if (loading) return;
+useEffect(() => {
+  if (loading) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
 
-          const card = entry.target;
-          const circle = card.querySelector("circle[data-progress]");
-          if (!circle) return;
+        const card = entry.target;
+        const circle = card.querySelector("circle[data-progress]");
+        if (!circle) return;
 
-          const radius = circle.r.baseVal.value;
-          const circumference = 2 * Math.PI * radius;
+        const radius = circle.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius;
 
-          circle.style.strokeDasharray = `${circumference} ${circumference}`;
-          circle.style.strokeDashoffset = circumference;
+        console.log("Circle found:", circle);
+        console.log("Radius:", radius);
+        console.log("Circumference:", circumference);
 
-          const progress = parseFloat(circle.dataset.progress);
-          const offset = circumference * (1 - progress / 100);
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        circle.style.strokeDashoffset = circumference;
 
-          requestAnimationFrame(() => {
-            circle.style.transition = "stroke-dashoffset 1.5s ease-out";
-            circle.style.strokeDashoffset = offset;
-          });
+        const progress = parseFloat(circle.dataset.progress);
+        const offset = circumference * (1 - progress / 100);
 
-          card.classList.add("animate");
+        console.log("Progress:", progress);
+        console.log("Offset:", offset);
+
+        requestAnimationFrame(() => {
+          circle.style.transition = "stroke-dashoffset 1.5s ease-out";
+          circle.style.strokeDashoffset = offset;
         });
-      },
-      { threshold: 0.5 }
-    );
 
-    const cards = containerRef.current.querySelectorAll(".skill-card");
-    cards.forEach((card) => observer.observe(card));
+        card.classList.add("animate");
+      });
+    },
+    { threshold: 0.5 }
+  );
 
-    return () => observer.disconnect();
-  }, [loading]);
+  const cards = containerRef.current.querySelectorAll(".skill-card");
+  cards.forEach((card) => observer.observe(card));
+
+  return () => observer.disconnect();
+}, [loading]);
+
 
   if (loading) return <Loading />;
 

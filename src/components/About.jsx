@@ -79,8 +79,7 @@ const About = () => {
                   <span className="info-label">Email</span>
                   <p className="info-value">{profile.email}</p>
                 </div>
-              </div>
-
+              </div><br/>
               <div className="info-item">
                 <div className="info-icon location-icon">
                   <i className="fas fa-map-marker-alt color-jaune" aria-hidden="true" />
@@ -94,7 +93,7 @@ const About = () => {
 
             <div className="skills-wrap">
               {[
-                'React', 'Deploiement', 'Laravel', 'AWS',
+                'React', 'Deploiement', 'Laravel', 'VPS',
                 'Mysql', 'Docker', 'Python', 'Django'
               ].map((skill, idx) => (
                 <span key={idx} className="skill-badge">
@@ -119,7 +118,7 @@ const About = () => {
                 <i className="fab fa-github" /> Follow
               </a>
               <a
-                href="/CV.pdf"
+                href="/CV_Eddy_Nilsen.pdf"
                 className="social-btn cv-btn"
                 target="_blank"
                 rel="noopener noreferrer"
