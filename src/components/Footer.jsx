@@ -21,7 +21,7 @@ const Footer = () => {
           <div className="col-md-4">
             <h5>{profile.username}'s Portfolio</h5>
             <p className="small">
-              {profile.about}
+              {/* {profile.about} */}
             </p>
           </div>
 
