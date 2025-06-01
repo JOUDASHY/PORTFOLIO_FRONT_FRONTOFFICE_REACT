@@ -342,24 +342,28 @@ const Contact = () => {
 
   .cyber-input {
     width: 100%;
-    padding: 1rem;
-    background: #000;
+    padding: 0.7rem;
+    background: #fff; // Changé de #000 à #fff
     border: 2px solid #0ff;
-    color: #0f0;
+    color: #333; // Changé de #0f0 à #333
     font-family: monospace;
     transition: all 0.3s ease;
     box-sizing: border-box;
   }
 
+  .cyber-input::placeholder {
+    color: #666; // Ajout d'une couleur plus foncée pour le placeholder
+  }
+
   .cyber-input:focus {
     outline: none;
-    border-color: #f0f;
-    box-shadow: 0 0 15px #f0f;
+    border-color: #0ff;  // Changé de #f0f à #0ff
+    box-shadow: 0 0 15px #0ff;  // Changé de #f0f à #0ff
   }
 
   .textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 100px;  // Réduit de 120px à 100px
   }
 
   .input-border {

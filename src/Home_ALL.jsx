@@ -51,7 +51,7 @@ function App() {
         document.title = 'Portfolio | Nilsen Tovohery';
         favicon.setAttribute('href', 'assets/images/favicon.png');
       } else {
-        document.title = 'Come Back To Portfolio';
+        // document.title = 'Come Back To Portfolio';
         favicon.setAttribute('href', 'assets/images/favhand.png');
       }
     };

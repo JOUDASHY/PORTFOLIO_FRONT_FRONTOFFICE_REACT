@@ -111,7 +111,9 @@ const Experience = () => {
                       <div className="marker-line bg-primary"></div>
                     </div>
                   </div>
-                  
+                  <p className="description-text mb-0">
+                    {exp.description}
+                  </p>
                 </div>
               </div>
             </div>
@@ -334,6 +336,14 @@ const Experience = () => {
     font-size: 0.85rem;            /* réduit */
   }
 
+  .description-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--bleu);
+    margin-top: 1rem;
+    padding: 0 1rem;
+  }
+
   @media (max-width: 992px) {
     .timeline-item {
       width: 100%;
@@ -387,6 +397,11 @@ const Experience = () => {
     .btn-jaune {
       padding: 0.7rem 1.2rem;
       font-size: 0.8rem;
+    }
+
+    .description-text {
+      font-size: 0.85rem;
+      padding: 0 0.5rem;
     }
   }
 

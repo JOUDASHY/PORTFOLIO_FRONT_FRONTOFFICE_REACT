@@ -134,10 +134,9 @@ const Home = () => {
     <section className="home" id="home">
       <div id="particles-js"></div>
       <div className="content">
-      <h2>
-  Hi There,<br /> I'm <span className='name'> {profile ? profile.username : ''}</span>
-</h2>
-
+        <h2>
+          Hi There,<br /> I'm <span className='name'> {profile ? profile.username : ''}</span>
+        </h2>
         <p>
           I am into <span className="typing-text"></span>
         </p>
@@ -145,46 +144,99 @@ const Home = () => {
           <span>About Me</span>
           <i className="fas fa-arrow-circle-down"></i>
         </a>
-        <div className="socials">
-          <ul className="social-icons">
-            <li>
-              <a
-                className="linkedin"
-                aria-label="LinkedIn"
-                href={profile ? profile.link_linkedin : '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-linkedin"></i>
-              </a>
-            </li>
-            <li>
-              <a
-                className="github"
-                aria-label="GitHub"
-                href="https://github.com/JOUDASHY98"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-github"></i>
-              </a>
-            </li>
-            <li>
-              <a
-                className="instagram"
-                aria-label="Facebook"
-                href={profile ? profile.link_facebook : '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-facebook"></i>
-              </a>
-            </li>
-          </ul>
+
+        <div className="floating-socials">
+          <div className="social-ring">
+            <a
+              href={profile ? profile.link_linkedin : '#'}
+              className="social-item linkedin"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="https://github.com/JOUDASHY98"
+              className="social-item github"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-github"></i>
+            </a>
+            <a
+              href={profile ? profile.link_facebook : '#'}
+              className="social-item facebook"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-facebook"></i>
+            </a>
+          </div>
         </div>
       </div>
-      <div 
-  className="image" 
+
+      {/* Ajoutez ces styles */}
+      <style jsx>{`
+        .floating-socials {
+          position: fixed;
+          right: 2rem;
+          bottom: 2rem;
+          z-index: 1000;
+        }
+
+        .social-ring {
+          display: flex;
+          gap: 1rem;
+          background: rgba(0, 11, 49, 0.1);
+          padding: 1rem;
+          border-radius: 50px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          border: 2px solid var(--jaune);
+        }
+
+        .social-item {
+          width: 45px;
+          height: 45px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: var(--bleu);
+          color: var(--light);
+          font-size: 1.2rem;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .social-item:hover {
+          transform: translateY(-5px);
+          background: var(--jaune);
+          box-shadow: 0 5px 15px rgba(0, 11, 49, 0.3);
+        }
+
+        .social-item.linkedin:hover,
+        .social-item.github:hover,
+        .social-item.facebook:hover { 
+          background: var(--jaune); 
+        }
+
+        @media (max-width: 768px) {
+          .floating-socials {
+            position: relative;
+            right: auto;
+            bottom: auto;
+            margin-top: 2rem;
+          }
+
+          .social-ring {
+            justify-content: center;
+          }
+        }
+      `}</style>
+
+      <div className="image" 
 
 >
   <img

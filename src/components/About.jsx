@@ -93,8 +93,8 @@ const About = () => {
 
             <div className="skills-wrap">
               {[
-                'React', 'Deploiement', 'Laravel', 'VPS',
-                'Mysql', 'Docker', 'Python', 'Django'
+                'React','Nextjs' , 'Laravel', 'Nginx', 'IIS Web Server',
+                'Mysql', 'Docker', 'Python', 'Django','SSL Encryption', 'Git'
               ].map((skill, idx) => (
                 <span key={idx} className="skill-badge">
                   {skill}
@@ -151,15 +151,28 @@ const About = () => {
           display: flex;
           flex-wrap: wrap;
           gap: 2rem;
-          align-items: center;
+          align-items: stretch;
           max-width: 1200px;
           margin: 0 auto;
-        }
-        .image-col,
-        .content-col {
-          flex: 1 1 500px; /* Augmentez la valeur ici pour rendre les colonnes plus larges */
+          min-height: 100%;
         }
 
+        .image-col,
+        .content-col {
+          flex: 1 1 500px;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .profile-wrap {
+          height: 100%;
+        }
+
+        .profile-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
 
         .loader-container {
           min-height: 100vh;
@@ -181,11 +194,6 @@ const About = () => {
           transform: perspective(1500px) rotateY(0deg) scale(1.05);
         }
 
-        .profile-img {
-          width: 100%;
-          display: block;
-        }
-
         .image-overlay {
           position: absolute;
           inset: 0;
@@ -203,6 +211,9 @@ const About = () => {
           border-radius: 1rem;
           padding: 2rem;
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+          height: 100%;
+          display: flex;
+          flex-direction: column;
         }
 
         .header-flex {
