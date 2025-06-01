@@ -14,23 +14,31 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import axios from 'axios';
 import './assets/css/style.css';
 import Loading from './Loading.jsx'; // Import Loading component
+import Maintenance from './components/Maintenance.jsx'; // Import Maintenance component
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [isMaintenanceMode, setIsMaintenanceMode] = useState(false);
 
   useEffect(() => {
     const recordVisit = async () => {
       try {
         await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/record-visit/`);
+        setIsMaintenanceMode(false);
       } catch (error) {
         console.error('Error recording visit:', error);
+        setIsMaintenanceMode(true);
       } finally {
-        setLoading(false); // Set loading to false after the API call
+        setLoading(false);
       }
     };
 
     recordVisit();
   }, []);
+
+  if (isMaintenanceMode) {
+    return <Maintenance />;
+  }
 
   return (
     <>

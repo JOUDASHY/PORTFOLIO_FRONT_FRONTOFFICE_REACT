@@ -25,7 +25,7 @@ const Header = () => {
           <img 
             src={Image} 
             alt="Logo" 
-            className="me-2 bg-jaune p-1"  
+            className="me-2 bg-jaune p-1y"  
             style={{ width: '1.5em', height: '1.5em', objectFit: 'contain',borderRadius: '50%' }}
 
           />
