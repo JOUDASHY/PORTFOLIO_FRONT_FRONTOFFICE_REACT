@@ -36,7 +36,7 @@ function App() {
     });
 
     const typed = new Typed('.typing-text', {
-      strings: ['web development', 'system administration'],
+      strings: ['web development', 'DEVOPS'],
       loop: true,
       typeSpeed: 50,
       backSpeed: 25,

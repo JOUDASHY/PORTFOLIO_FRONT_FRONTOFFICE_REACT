@@ -135,14 +135,15 @@ const Home = () => {
       <div id="particles-js"></div>
       <div className="content">
         <h2>
-          Hi There,<br /> I'm <span className='name'> {profile ? profile.username : ''}</span>
+          Welcome to my world!<br />
+          <span className='greeting'>I'm</span> <span className='name'>{profile ? profile.username : ''}</span>
         </h2>
         <p>
-          I am into <span className="typing-text"></span>
+          Passionate about <span className="typing-text"></span>
         </p>
         <a href="#about" className="btn">
-          <span>About Me</span>
-          <i className="fas fa-arrow-circle-down"></i>
+          <span>Discover More</span>
+          <i className="fas fa-chevron-circle-right"></i>
         </a>
 
         <div className="floating-socials">
@@ -175,7 +176,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Ajoutez ces styles */}
+      {/* Styles */}
       <style jsx>{`
         .floating-socials {
           position: fixed;
@@ -186,9 +187,10 @@ const Home = () => {
 
         .social-ring {
           display: flex;
-          gap: 1rem;
+          flex-direction: row;
+          gap: 0.5rem;
           background: rgba(0, 11, 49, 0.1);
-          padding: 1rem;
+          padding: 0.8rem;
           border-radius: 50px;
           backdrop-filter: blur(10px);
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -196,42 +198,112 @@ const Home = () => {
         }
 
         .social-item {
-          width: 45px;
-          height: 45px;
+          width: 35px;
+          height: 35px;
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: 50%;
           background: var(--bleu);
           color: var(--light);
-          font-size: 1.2rem;
+          font-size: 1rem;
           transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .social-item:hover {
-          transform: translateY(-5px);
-          background: var(--jaune);
-          box-shadow: 0 5px 15px rgba(0, 11, 49, 0.3);
-        }
-
-        .social-item.linkedin:hover,
-        .social-item.github:hover,
-        .social-item.facebook:hover { 
-          background: var(--jaune); 
         }
 
         @media (max-width: 768px) {
           .floating-socials {
-            position: relative;
-            right: auto;
-            bottom: auto;
-            margin-top: 2rem;
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            left: auto;
           }
 
           .social-ring {
-            justify-content: center;
+            padding: 0.4rem 0.8rem;
+            background: rgba(0, 11, 49, 0.8);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .floating-socials {
+            right: 0.5rem;
+            bottom: 0.5rem;
+          }
+
+          .social-ring {
+            padding: 0.3rem 0.6rem;
+            gap: 0.4rem;
+          }
+        }
+
+        h2 {
+          font-size: 1.8rem;
+          line-height: 1.2;
+          margin-bottom: 0.8rem;
+        }
+
+        .name {
+          font-size: 2rem;
+          color: var(--jaune);
+        }
+
+        .greeting {
+          font-size: 1.5rem;
+          color: var(--light);
+        }
+
+        p {
+          font-size: 1rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .btn {
+          font-size: 0.7rem;
+          padding: 0.35rem 0.8rem;
+          background: var(--bleu);
+          color: var(--light);
+          border-radius: 15px;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          border: 1px solid var(--jaune);
+        }
+
+        .btn i {
+          font-size: 0.6rem;
+        }
+
+        .btn:hover {
+          transform: scale(0.95);
+          background: var(--jaune);
+        }
+
+        @media (max-width: 768px) {
+          h2 {
+            font-size: 1.5rem;
+          }
+          
+          .name {
+            font-size: 1.7rem;
+          }
+          
+          .greeting {
+            font-size: 1.3rem;
+          }
+          
+          p {
+            font-size: 0.9rem;
+          }
+          
+          .btn {
+            font-size: 0.65rem;
+            padding: 0.3rem 0.6rem;
+          }
+          
+          .btn i {
+            font-size: 0.55rem;
           }
         }
       `}</style>
