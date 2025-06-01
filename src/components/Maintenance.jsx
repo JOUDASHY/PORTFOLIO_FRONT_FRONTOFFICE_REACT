@@ -27,16 +27,18 @@ const Maintenance = () => {
           </h1>
           
           <div className="info-box">
-            <div className="info-item">
-              <i className="fas fa-info-circle info-icon"></i>
-              <span>Services temporairement indisponibles</span>
+            <div className="status-icon">
+              <i className="fas fa-info-circle info-icon large-icon"></i>
             </div>
-            {/* <div className="info-item">
-              <i className="fas fa-clock info-icon"></i>
-              <span>Durée estimée: 30 minutes</span>
-            </div> */}
+            <div className="status-info">
+              <p className="status-message">Services temporairement indisponibles</p>
+              <div className="info-details">
+                <i className="fas fa-exclamation-circle"></i>
+                <span>Maintenance en cours...</span>
+              </div>
+            </div>
           </div>
-          
+
           <div className="status-box">
             <div className="status-icon">
               <i className="fas fa-cog rotating-icon"></i>
@@ -80,7 +82,7 @@ const Maintenance = () => {
 
         .maintenance-content {
           width: 100%;
-          max-width: 600px;
+          max-width: 800px;
           background: rgba(0, 11, 49, 0.7);
           border-radius: 24px;
           border: 2px solid var(--jaune);
@@ -195,34 +197,17 @@ const Maintenance = () => {
           text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
         }
 
-        .info-box {
-          background: rgba(0, 11, 49, 0.4);
-          border-radius: 12px;
-          padding: 1.5rem;
-          margin: 2rem 0;
-          border: 1px solid rgba(246, 140, 9, 0.2);
-        }
-
-        .info-item {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          margin: 0.8rem 0;
-          color: var(--light);
-        }
-
-        .info-icon {
-          color: var(--jaune);
-          font-size: 1.2rem;
-        }
-
-        .status-box {
+        .info-box, .status-box {
           background: rgba(0, 0, 0, 0.3);
           border-radius: 16px;
           padding: 2rem;
           border: 1px solid var(--jaune);
           box-shadow: 0 4px 20px rgba(246, 140, 9, 0.1);
           animation: fadeInUp 0.8s ease-out;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1.5rem;
         }
 
         .status-icon {
@@ -246,11 +231,26 @@ const Maintenance = () => {
           animation: float 3s ease-in-out infinite;
         }
 
+        .large-icon {
+          font-size: 2.5rem;
+          color: var(--jaune);
+          filter: drop-shadow(0 0 10px var(--jaune));
+        }
+
         .status-message {
           color: white;
           font-size: 1.2rem;
           font-weight: 500;
           margin-bottom: 1.5rem;
+        }
+
+        .info-details {
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+          color: var(--jaune);
+          font-size: 1rem;
+          opacity: 0.9;
         }
 
         .progress-track {
@@ -385,27 +385,11 @@ const Maintenance = () => {
             font-size: 0.9rem;
           }
 
-          .info-box {
-            padding: 1rem;
-            margin: 1.5rem 0;
-          }
-
-          .info-item {
-            gap: 0.8rem;
-            margin: 0.6rem 0;
-            font-size: 0.9rem;
-          }
-
-          .info-icon {
-            font-size: 1rem;
-          }
-
-          .status-box {
+          .info-box, .status-box {
             padding: 1.5rem;
           }
 
-          .rotating-icon,
-          .secondary-icon {
+          .large-icon {
             font-size: 2rem;
           }
 
@@ -444,6 +428,27 @@ const Maintenance = () => {
           .rotating-icon,
           .secondary-icon {
             font-size: 1.8rem;
+          }
+        }
+
+        @media (min-width: 1200px) {
+          .maintenance-content {
+            max-width: 1000px;
+          }
+
+          .main-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 3rem;
+          }
+
+          .warning-banner {
+            grid-column: 1 / -1;
+          }
+
+          .title {
+            grid-column: 1 / -1;
           }
         }
       `}</style>
