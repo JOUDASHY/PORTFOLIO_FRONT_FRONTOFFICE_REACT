@@ -6,6 +6,15 @@ const Experience = () => {
   const [experiences, setExperiences] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const formatDateToFrench = (date) => {
+    const months = [
+      'janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+      'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'
+    ];
+    const d = new Date(date);
+    return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -23,10 +32,10 @@ const Experience = () => {
         const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/experience/`);
         const formattedData = response.data.map((exp, index) => ({
           ...exp,
-          duration: `${new Date(exp.date_debut).toLocaleDateString()} - ${
+          duration: `${formatDateToFrench(exp.date_debut)} - ${
             exp.date_fin && new Date(exp.date_fin) <= new Date()
-              ? new Date(exp.date_fin).toLocaleDateString()
-              : "Present"
+              ? formatDateToFrench(exp.date_fin)
+              : "Présent"
           }`,
         }));
         setExperiences(formattedData);
